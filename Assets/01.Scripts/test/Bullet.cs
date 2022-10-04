@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReflectObject : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
-    private float _boundPower;
+    [SerializeField] private float _boundPower;
+    [SerializeField] private float _speed;
     
     private Rigidbody _rigid;
     private Vector3 _lastVelocity;
+    private Transform _targetTrm;
 
     private void Awake() {
+        _targetTrm = GameObject.Find("Player").transform;
         _rigid = GetComponent<Rigidbody>();
     }
 
     private void Start() {
-        _rigid.velocity = new Vector3(5, 0, 0);
+        _rigid.velocity = (_targetTrm.position - transform.position).normalized * _speed;
     }
 
     private void Update() {

@@ -27,17 +27,14 @@ public class MainMenuUI : MonoBehaviour
 
     IEnumerator PopUpCoroutine(int stage){
         //팝업 스크린 수정하기
-        Sequence sq = DOTween.Sequence();
-
-        sq.Append(_levelRectTrm.DOAnchorPos3DX(-225, 0.2f));
-        sq.Insert(0.1f, _popUpRectTrm.DOAnchorPos3DX(-70, 0.2f));
+        _levelRectTrm.DOAnchorPos3DX(-225, 0.2f);
+        _popUpRectTrm.DOAnchorPos3DX(-70, 0.3f);
 
         yield return new WaitForSeconds(0.3f);
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape));
 
-        sq.Append(_levelRectTrm.DOAnchorPos3DX(0, 0.2f));
-        sq.Insert(0.1f, _popUpRectTrm.DOAnchorPos3DX(420, 0.2f));
-        //sq.Kill();
+        _levelRectTrm.DOAnchorPos3DX(0, 0.2f);
+        _popUpRectTrm.DOAnchorPos3DX(470, 0.3f);
         if(Input.GetKeyDown(KeyCode.Return)){
             yield return new WaitForSeconds(0.2f);
             Debug.Log($"{stage} 시작");
@@ -45,7 +42,6 @@ public class MainMenuUI : MonoBehaviour
         }
         else{
             yield return new WaitForSeconds(0.2f);
-            sq.Kill();
             _isSelected = false;
         }
     }

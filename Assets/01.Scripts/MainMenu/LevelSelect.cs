@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using DG.Tweening;
 
 public class LevelSelect : MonoBehaviour
 {
@@ -12,25 +15,54 @@ public class LevelSelect : MonoBehaviour
 
     [field:SerializeField] private levelCount _levelCount;
     [SerializeField] private Vector3 _cursorInitPos;
+    [SerializeField] private RectTransform[] _windows;
 
+    private int _currentWindow = 1;
     private int _currentLevel = 1;
-    private RectTransform _cursor;
 
+    private bool _isMovingWindow = false;
+
+    private RectTransform _cursor;
+    private RectTransform _arrow;
+    private TextMeshProUGUI _arrowDirect;
     private MainMenuUI _mainMenuUI;
+
+    private Sequence sq;
 
     private void Awake() {
         _cursor = transform.Find("LevelSelect/Cursor").GetComponent<RectTransform>();
+        _arrow = transform.Find("Arrow").GetComponent<RectTransform>();
+        _arrowDirect = _arrow.GetComponent<TextMeshProUGUI>();
         _mainMenuUI = GetComponent<MainMenuUI>();
         
         _cursor.anchoredPosition3D = _cursorInitPos;
     }
 
     private void Update() {
+        _arrow.anchoredPosition3D = new Vector3((_currentWindow == 1) ? 520f : -520f, 0f, 0f);
+        _arrowDirect.text = (_currentWindow == 1) ? ">" : "<";
         SelectLevel();
+        SelectWindow();
+    }
+
+    private void SelectWindow(){
+        if(_mainMenuUI.IsSelected || _isMovingWindow) return;
+
+        if((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)) && (_currentWindow > 1 || _currentWindow < 2)){
+            sq = DOTween.Sequence();
+            _isMovingWindow = true;
+            
+            _currentWindow += (_currentWindow == 1) ? 1 : -1;
+            foreach(RectTransform r in _windows){
+                sq.Join(r.DOAnchorPos3DX(r.anchoredPosition3D.x + ((_currentWindow == 1) ? 1500 : -1500), 0.5f));
+            }
+
+            sq.OnComplete(() => _isMovingWindow = false);
+        }
     }
 
     private void SelectLevel(){
-        if(_mainMenuUI.IsSelected) return;
+        if(_mainMenuUI.IsSelected || _currentWindow != 1 || _isMovingWindow) return;
 
         if(Input.GetKeyDown(KeyCode.UpArrow)){
             if(_currentLevel > _levelCount.min){
@@ -45,7 +77,6 @@ public class LevelSelect : MonoBehaviour
             }
         }
         if(Input.GetKeyDown(KeyCode.Return)){
-            Debug.Log(_currentLevel);
             _mainMenuUI.PopUpLevelPanel(_currentLevel);
         }
     }

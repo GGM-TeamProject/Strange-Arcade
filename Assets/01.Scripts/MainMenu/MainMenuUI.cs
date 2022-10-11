@@ -21,11 +21,11 @@ public class MainMenuUI : MonoBehaviour
     public void PopUpLevelPanel(int stage){
         if(!_isSelected){
             _isSelected = true;
-            StartCoroutine(PopUpCoroutine(stage));
+            StartCoroutine(PopUpLevelCoroutine(stage));
         }
     }
 
-    IEnumerator PopUpCoroutine(int stage){
+    IEnumerator PopUpLevelCoroutine(int stage){
         //팝업 스크린 수정하기
         _levelRectTrm.DOAnchorPos3DX(-225, 0.2f);
         _popUpRectTrm.DOAnchorPos3DX(-70, 0.3f);

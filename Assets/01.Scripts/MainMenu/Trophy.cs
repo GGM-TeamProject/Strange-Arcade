@@ -9,11 +9,8 @@ public class Trophy : MonoBehaviour
 
     public TrophySO trophySO;
 
-    private void Start() {
-        img = GetComponent<Image>();
-    }
-
     public void achiveMission(bool achive){
+        img = GetComponent<Image>();
         img.sprite = (achive) ? trophySO.unLocked : trophySO.locked; 
     }
 }

@@ -10,7 +10,6 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
             instance = GameObject.Find("Manager").GetComponentInChildren<T>();
 
             if(instance == null){
-                Debug.Log(1);
                 instance = new GameObject(typeof(T).ToString()).AddComponent<T>();
                 instance.transform.SetParent(GameObject.Find("Manager").transform);
             }

@@ -14,6 +14,7 @@ public class LevelSelect : MonoBehaviour
     }
 
     [field:SerializeField] private levelCount _levelCount;
+
     [SerializeField] private Vector3 _cursorInitPos;
     [SerializeField] private RectTransform[] _windows;
 
@@ -79,5 +80,9 @@ public class LevelSelect : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Return)){
             _mainMenuUI.PopUpLevelPanel(_currentLevel);
         }
+    }
+
+    private void SelectTrophy(){
+
     }
 }

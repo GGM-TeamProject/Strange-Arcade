@@ -18,7 +18,7 @@ public class ChallengeManager : MonoBehaviour
     // 8 - FirstDeath_S4
     // 9 - AllClear
 
-    private void Awake() {
+    private void Start() {
         CheckClear("FirstGame");
 
         for(int i = 0; i < _trophies.Count; i++){

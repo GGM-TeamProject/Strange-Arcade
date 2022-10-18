@@ -27,8 +27,8 @@ public class MainMenuUI : MonoBehaviour
 
     IEnumerator PopUpLevelCoroutine(int stage){
         //팝업 스크린 수정하기
-        _levelRectTrm.DOAnchorPos3DX(-225, 0.2f);
-        _popUpRectTrm.DOAnchorPos3DX(-70, 0.3f);
+        _levelRectTrm.DOAnchorPos3DX(-256, 0.2f);
+        _popUpRectTrm.DOAnchorPos3DX(-284, 0.3f);
 
         yield return new WaitForSeconds(0.3f);
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape));

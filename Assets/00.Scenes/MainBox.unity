@@ -692,8 +692,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2DC\uC791\uC740 \uCC3D\uB300\uD558\uC600\uC73C\uB098 \n\uB05D\uC740
-    \uBBF8\uC57D\uD558\uB9AC\uB77C."
+  m_text: "\uC2DC\uC791\uC740 \uCC3D\uB300\uD558\uC600\uC73C\uB098 \uB05D\uC740 \uBBF8\uC57D\uD558\uB9AC\uB77C."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: df13003952488404aa01abc947699404, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 2c18384d764cb1c489537cc43e2d8559, type: 2}
@@ -2838,7 +2837,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1258937948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1487.9639, y: 168.35547, z: 628.8767}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3179,10 +3178,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.2
-    y: 0.24
-    width: 0.603
-    height: 0.47
+    x: 0.05
+    y: 0.15
+    width: 0.8
+    height: 0.7
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -3211,7 +3210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1405768628}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 953.03613, y: -168.35547, z: -638.8767}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4621,6 +4620,10 @@ PrefabInstance:
     - target: {fileID: 1504437345862654, guid: 79a55f4e03d515e478b96787edb57d3b, type: 3}
       propertyPath: m_Name
       value: WideStandardOranges
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504437345862654, guid: 79a55f4e03d515e478b96787edb57d3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4724290103576658, guid: 79a55f4e03d515e478b96787edb57d3b, type: 3}
       propertyPath: m_RootOrder

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FirstDeath_S3
   m_EditorClassIdentifier: 
   index: 7
-  unLocked: {fileID: 21300000, guid: 920212c503636ca4cb58e29a78abb2e3, type: 3}
+  unLocked: {fileID: 21300000, guid: 4c012e9502eb1694f8c533ce7f72bc71, type: 3}
   locked: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   challegeName: "\uBBF8\uAC1C\uD55C \uC778\uAC04 \uB530\uC704\uAC00 \uC6B0\uB9B4
     \uC774\uAE38 \uC21C \uC5C6\uC9C0"

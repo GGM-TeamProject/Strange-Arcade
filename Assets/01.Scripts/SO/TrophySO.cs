@@ -11,6 +11,6 @@ public class TrophySO : ScriptableObject
     public Sprite unLocked;
     public Sprite locked;
 
-    public string challegeName;
+    [TextArea] public string challegeName;
     public string explanation;
 }

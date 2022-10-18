@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FirstGameOn
   m_EditorClassIdentifier: 
   index: 0
-  unLocked: {fileID: 21300000, guid: 920212c503636ca4cb58e29a78abb2e3, type: 3}
+  unLocked: {fileID: 21300000, guid: 6586d75d1237df24abdc768eb5579dfd, type: 3}
   locked: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   challegeName: "\uC2DC\uC791\uC740 \uCC3D\uB300\uD558\uC600\uC73C\uB098 \uB05D\uC740
     \uBBF8\uC57D\uD558\uB9AC\uB77C"

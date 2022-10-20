@@ -42,7 +42,7 @@ public class CursorManager : MonoBehaviour
                 break;
         }
 
-        Cursor.SetCursor(texture, new Vector2(0, 0), CursorMode.Auto);
+        Cursor.SetCursor(texture, new Vector2(texture.width / 4, 0), CursorMode.Auto);
     }
 
     public void SetCursor(bool _bool){

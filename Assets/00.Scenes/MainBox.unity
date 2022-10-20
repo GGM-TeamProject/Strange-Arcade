@@ -1035,6 +1035,8 @@ GameObject:
   - component: {fileID: 512924108}
   - component: {fileID: 512924110}
   - component: {fileID: 512924111}
+  - component: {fileID: 512924113}
+  - component: {fileID: 512924112}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1094,6 +1096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChallengeManager: {fileID: 0}
   UIManager: {fileID: 0}
+  CursorManager: {fileID: 0}
 --- !u!114 &512924110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1119,6 +1122,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onChallengePanelReleaseTime: 1.5
+--- !u!114 &512924112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512924105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22609179c0a77de4fb9c742efc28f142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &512924113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512924105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e2da25b9d74f8a45b85967a7cb50176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <mouseState>k__BackingField: 0
 --- !u!1 &584043205
 GameObject:
   m_ObjectHideFlags: 0

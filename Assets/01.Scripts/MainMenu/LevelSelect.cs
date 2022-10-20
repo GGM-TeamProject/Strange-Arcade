@@ -83,6 +83,8 @@ public class LevelSelect : MonoBehaviour
     }
 
     private void SelectTrophy(){
+        if(_currentWindow != 2 || _isMovingWindow) return;
 
+        
     }
 }

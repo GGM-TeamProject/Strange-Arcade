@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T instance = null;
     public static T Instance{
         get{
-            instance = GameObject.Find("Manager").GetComponentInChildren<T>();
-
-            if(instance == null){
+            try{
+                instance = GameObject.Find("Manager").GetComponentInChildren<T>();
+            }
+            catch(NullReferenceException){
                 instance = new GameObject(typeof(T).ToString()).AddComponent<T>();
                 instance.transform.SetParent(GameObject.Find("Manager").transform);
             }

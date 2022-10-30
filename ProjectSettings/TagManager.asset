@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Stage1_Platform
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -41,4 +41,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 2073863365
+    locked: 0
+  - name: Platform
+    uniqueID: 1001076681
+    locked: 0
+  - name: Player
+    uniqueID: 361293945
     locked: 0

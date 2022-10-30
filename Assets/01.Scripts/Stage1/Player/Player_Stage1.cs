@@ -12,13 +12,13 @@ public class Player_Stage1 : MonoBehaviour
     [SerializeField] private float _maxJumpPower;
     [SerializeField] private float _minJumpPower;
 
-    private Rigidbody _rigid;
+    private Rigidbody2D _rigid;
 
     private int _jumpCount = 1;
     private bool _isJump = false;
     
     private void Awake() {
-        _rigid = GetComponent<Rigidbody>();
+        _rigid = GetComponent<Rigidbody2D>();
     }
 
     private void Update() {
@@ -54,8 +54,8 @@ public class Player_Stage1 : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other) {
-        if(other.transform.CompareTag("Stage1_Platform")){
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.transform.CompareTag("Platform")){
             _jumpCount = 1;
         }
     }

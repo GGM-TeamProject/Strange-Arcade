@@ -2,60 +2,85 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerEnum{
+    Idle,
+    JumpReady,
+    Jump
+}
+
 public class Player_Stage1 : MonoBehaviour
 {
     [Header("Movement Value")]
-    [SerializeField] private float _speed;
     [SerializeField] private float _jumpPower;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _jumpPowerUpSpeed;
 
     [Header("JumpPowerLimitValue")]
     [SerializeField] private float _maxJumpPower;
     [SerializeField] private float _minJumpPower;
 
+    [Header("PlayerEnumSet")]
+    [SerializeField] private PlayerEnum _playerEnum = PlayerEnum.Idle;
+
     private Rigidbody2D _rigid;
+    private Animator _anim;
+    private Transform _sprite;
 
     private int _jumpCount = 1;
+    private float _horizontalInput = 0;
     private bool _isJump = false;
+    private bool _isMove = false;
+
     
     private void Awake() {
+        _sprite = transform.Find("Sprite");
+        _anim = _sprite.GetComponent<Animator>();
         _rigid = GetComponent<Rigidbody2D>();
     }
 
     private void Update() {
-        if(_isJump) return; //점프 중에는 움직이기 불가능
-
         Move();
         Jump();
+        AnimationSet();
+    }
+
+    private void AnimationSet(){
+        _anim.SetBool("IsMove", _isMove);
+        _anim.SetBool("IsJump", _isJump);
     }
 
     private void Move(){
-        float h = Input.GetAxisRaw("Horizontal");
-        Vector3 moveDir = new Vector3(h * _speed, _rigid.velocity.y);
-        
-        _rigid.velocity = moveDir;
+        _horizontalInput = Input.GetAxisRaw("Horizontal");
+        _isMove = _horizontalInput != 0;
+
+        if(_playerEnum == PlayerEnum.Idle){
+            Vector3 moveDir = new Vector3(_horizontalInput * _speed, _rigid.velocity.y);
+            _rigid.velocity = moveDir;
+        }
     }
 
     private void Jump(){
-
         if(Input.GetKey(KeyCode.Space)){
-            _jumpPower += Time.deltaTime;
+            _rigid.velocity = Vector2.zero;
+            _playerEnum = PlayerEnum.JumpReady;
+            _jumpPower += Time.deltaTime * _jumpPowerUpSpeed;
             _jumpPower = Mathf.Clamp(_jumpPower, _minJumpPower, _maxJumpPower);
         }
 
         if(Input.GetKeyUp(KeyCode.Space)){
-            if(_jumpCount > 0){
-                _jumpPower = 0f;
-                _jumpCount--;
-                _isJump = true;
+            _jumpCount--;
+            _playerEnum = PlayerEnum.Jump;
+            _isJump = true;
 
-                _rigid.velocity = Vector2.zero;
-                _rigid.velocity = Vector2.up * _jumpPower;
-            }
+            _rigid.velocity = new Vector3(_horizontalInput * (_jumpPower * 0.5f), _jumpPower * 1.2f);
+            _jumpPower = 0;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.transform.CompareTag("Platform")){
+            _playerEnum = PlayerEnum.Idle;
+            _isJump = false;
             _jumpCount = 1;
         }
     }

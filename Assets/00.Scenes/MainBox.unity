@@ -2094,13 +2094,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c31fb0c40b6bd14fa55708be2728fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
   _jumpPower: 0
+  _speed: 5
   _jumpPowerUpSpeed: 2
-  _maxJumpPower: 0
-  _minJumpPower: 5
-  _isJump: 0
-  _isMove: 0
+  _maxJumpPower: 7
+  _minJumpPower: 3
+  _playerEnum: 0
 --- !u!50 &867637761
 Rigidbody2D:
   serializedVersion: 4

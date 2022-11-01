@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     #endregion
     
     private void Awake() {
-        _challengePanel = GameObject.Find("Screen/Menu/ScreenCanvas/ChallengeClearPanel").GetComponent<RectTransform>();
+        _challengePanel = GameObject.Find("Screen/Main Canvas/ChallengeClearPanel").GetComponent<RectTransform>();
         _challengeImage = _challengePanel.transform.Find("TrophyImage").GetComponent<Image>();
         _challengeText = _challengePanel.GetComponentInChildren<TextMeshProUGUI>();
     }

@@ -25,6 +25,7 @@ public class Player_Stage1 : MonoBehaviour
     private Rigidbody2D _rigid;
     private Animator _anim;
     private Transform _sprite;
+    private Player_Stage1_JumpGauge _jumpGauge;
 
     private int _jumpCount = 1;
     private float _horizontalInput = 0;
@@ -36,6 +37,7 @@ public class Player_Stage1 : MonoBehaviour
         _sprite = transform.Find("Sprite");
         _anim = _sprite.GetComponent<Animator>();
         _rigid = GetComponent<Rigidbody2D>();
+        _jumpGauge = transform.Find("JumpGauge").GetComponent<Player_Stage1_JumpGauge>();
     }
 
     private void Update() {
@@ -60,20 +62,24 @@ public class Player_Stage1 : MonoBehaviour
     }
 
     private void Jump(){
-        if(Input.GetKey(KeyCode.Space)){
-            _rigid.velocity = Vector2.zero;
-            _playerEnum = PlayerEnum.JumpReady;
-            _jumpPower += Time.deltaTime * _jumpPowerUpSpeed;
-            _jumpPower = Mathf.Clamp(_jumpPower, _minJumpPower, _maxJumpPower);
-        }
+        _jumpGauge.SetJumpGauge(_jumpPower);
 
-        if(Input.GetKeyUp(KeyCode.Space)){
-            _jumpCount--;
-            _playerEnum = PlayerEnum.Jump;
-            _isJump = true;
+        if(!_isJump){
+            if(Input.GetKey(KeyCode.Space)){
+                _rigid.velocity = Vector2.zero;
+                _playerEnum = PlayerEnum.JumpReady;
+                _jumpPower += Time.deltaTime * _jumpPowerUpSpeed;
+                _jumpPower = Mathf.Clamp(_jumpPower, _minJumpPower, _maxJumpPower);
+            }
 
-            _rigid.velocity = new Vector3(_horizontalInput * (_jumpPower * 0.5f), _jumpPower * 1.2f);
-            _jumpPower = 0;
+            if(Input.GetKeyUp(KeyCode.Space)){
+                _jumpCount--;
+                _playerEnum = PlayerEnum.Jump;
+                _isJump = true;
+
+                _rigid.velocity = new Vector3(_horizontalInput * (_jumpPower * 0.5f), _jumpPower * 1.2f);
+                _jumpPower = 0;
+            }
         }
     }
 

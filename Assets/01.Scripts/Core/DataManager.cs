@@ -56,7 +56,7 @@ public class DataManager : MonoSingleton<DataManager>
 
     public void ResetData(){
         for(int index = 0; index < user.clearChallenge.Length; index++){
-            if(!user.clearChallenge[(int)index]){
+            if(user.clearChallenge[(int)index]){
                 user.clearChallenge[(int)index] = false;
                 GameManager.Instance.ChallengeManager.Trophies[(int)index].achiveMission(user.clearChallenge[(int)index]);
                 GameManager.Instance.UIManager.PopUpChallengePanel(GameManager.Instance.ChallengeManager.Trophies[(int)index].trophySO.challegeName, GameManager.Instance.ChallengeManager.Trophies[(int)index].trophySO.unLocked);

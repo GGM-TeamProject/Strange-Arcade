@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public enum PlayerEnum{
     Idle,
@@ -31,6 +32,7 @@ public class Player_Stage1 : MonoBehaviour
     private float _horizontalInput = 0;
     private bool _isJump = false;
     private bool _isMove = false;
+    private bool _isActiveGauge = false;
 
     
     private void Awake() {
@@ -40,6 +42,10 @@ public class Player_Stage1 : MonoBehaviour
         _jumpGauge = transform.Find("JumpGauge").GetComponent<Player_Stage1_JumpGauge>();
     }
 
+    private void Start() {
+        GaugePopUp(false, 0f);
+    }
+
     private void Update() {
         Move();
         Jump();
@@ -47,7 +53,7 @@ public class Player_Stage1 : MonoBehaviour
     }
 
     private void AnimationSet(){
-        _anim.SetBool("IsMove", _isMove);
+        _anim.SetBool("IsMove", (_isMove && _playerEnum == PlayerEnum.Idle));
         _anim.SetBool("IsJump", _isJump);
     }
 
@@ -56,8 +62,19 @@ public class Player_Stage1 : MonoBehaviour
         _isMove = _horizontalInput != 0;
 
         if(_playerEnum == PlayerEnum.Idle){
+            FlipSprite(_horizontalInput);
             Vector3 moveDir = new Vector3(_horizontalInput * _speed, _rigid.velocity.y);
             _rigid.velocity = moveDir;
+        }
+    }
+
+    private void FlipSprite(float x){
+
+        if(x > 0){
+            _sprite.localScale = new Vector3(1, 1, 1);
+        }
+        else if(x < 0){
+            _sprite.localScale = new Vector3(-1, 1, 1);
         }
     }
 
@@ -66,10 +83,14 @@ public class Player_Stage1 : MonoBehaviour
 
         if(!_isJump){
             if(Input.GetKey(KeyCode.Space)){
+                if(!_isActiveGauge) GaugePopUp(true, 1f);
                 _rigid.velocity = Vector2.zero;
                 _playerEnum = PlayerEnum.JumpReady;
                 _jumpPower += Time.deltaTime * _jumpPowerUpSpeed;
                 _jumpPower = Mathf.Clamp(_jumpPower, _minJumpPower, _maxJumpPower);
+            }
+            else{
+                if(_isActiveGauge) GaugePopUp(false, 1f);
             }
 
             if(Input.GetKeyUp(KeyCode.Space)){
@@ -81,6 +102,16 @@ public class Player_Stage1 : MonoBehaviour
                 _jumpPower = 0;
             }
         }
+    }
+
+    [ContextMenu("test")]
+    private void GaugePopUp(bool isActive, float delayTime){
+        _isActiveGauge = isActive;
+        SpriteRenderer valueSprite = _jumpGauge.ValueTrm.GetComponentInChildren<SpriteRenderer>();
+        SpriteRenderer backGround = _jumpGauge.ValueTrm.GetComponentInParent<SpriteRenderer>();
+
+        backGround.DOFade((isActive ? 1 : 0), delayTime);
+        valueSprite.DOFade((isActive ? 1 : 0), delayTime);
     }
 
     private void OnCollisionEnter2D(Collision2D other) {

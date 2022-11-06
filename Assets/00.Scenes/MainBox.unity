@@ -1436,6 +1436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feed38b0e7e22114d8539a2fdd2ef5f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _poolList:
+  - {fileID: 3567456106879835764, guid: 0e125d7a2c9361549bcee6d547b05c01, type: 3}
   ChallengeManager: {fileID: 0}
   UIManager: {fileID: 0}
   CursorManager: {fileID: 0}

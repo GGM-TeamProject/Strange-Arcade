@@ -27,6 +27,7 @@ public class Player_Stage1 : MonoBehaviour
     private Animator _anim;
     private Transform _sprite;
     private Player_Stage1_JumpGauge _jumpGauge;
+    private CapsuleCollider2D _capsuleCollider2D;
 
     private int _jumpCount = 1;
     private float _horizontalInput = 0;
@@ -40,6 +41,7 @@ public class Player_Stage1 : MonoBehaviour
         _anim = _sprite.GetComponent<Animator>();
         _rigid = GetComponent<Rigidbody2D>();
         _jumpGauge = transform.Find("JumpGauge").GetComponent<Player_Stage1_JumpGauge>();
+        _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
 
     private void Start() {
@@ -98,13 +100,22 @@ public class Player_Stage1 : MonoBehaviour
                 _playerEnum = PlayerEnum.Jump;
                 _isJump = true;
 
+                //summon Jump Particle
+                StartCoroutine(PlayJumpParticle(new Vector2(_capsuleCollider2D.bounds.center.x, _capsuleCollider2D.bounds.min.y)));
+
                 _rigid.velocity = new Vector3(_horizontalInput * (_jumpPower * 0.5f), _jumpPower * 1.2f);
                 _jumpPower = 0;
             }
         }
     }
 
-    [ContextMenu("test")]
+    IEnumerator PlayJumpParticle(Vector2 summonPos){
+        GameObject jumpParticle = PoolManager.Instance.Pop("PlayerJumpEffect");
+        jumpParticle.transform.position = summonPos;
+        yield return new WaitUntil(() => !jumpParticle.GetComponent<ParticleSystem>().isPlaying);
+        PoolManager.Instance.Push(jumpParticle);
+    }
+
     private void GaugePopUp(bool isActive, float delayTime){
         _isActiveGauge = isActive;
         SpriteRenderer valueSprite = _jumpGauge.ValueTrm.GetComponentInChildren<SpriteRenderer>();

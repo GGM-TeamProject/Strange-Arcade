@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 7
   unLocked: {fileID: 21300000, guid: 4c012e9502eb1694f8c533ce7f72bc71, type: 3}
-  locked: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  locked: {fileID: 21300000, guid: e2da3de46de3a3648906eef5f6db479e, type: 3}
   challegeName: "\uBBF8\uAC1C\uD55C \uC778\uAC04 \uB530\uC704\uAC00 \n\uC6B0\uB9B4
     \uC774\uAE38 \uC21C \uC5C6\uC9C0"
   explanation: "\uC138 \uBC88\uC9F8 \uC2A4\uD14C\uC774\uC9C0\uC5D0\uC11C \uCC98\uC74C\uC73C\uB85C

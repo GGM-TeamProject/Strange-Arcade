@@ -63,10 +63,13 @@ public class Player_Stage1 : MonoBehaviour
         _horizontalInput = Input.GetAxisRaw("Horizontal");
         _isMove = _horizontalInput != 0;
 
-        if(_playerEnum == PlayerEnum.Idle){
+        if(_playerEnum != PlayerEnum.Jump){
             FlipSprite(_horizontalInput);
-            Vector3 moveDir = new Vector3(_horizontalInput * _speed, _rigid.velocity.y);
-            _rigid.velocity = moveDir;
+
+            if(_playerEnum == PlayerEnum.Idle){
+                Vector3 moveDir = new Vector3(_horizontalInput * _speed, _rigid.velocity.y);
+                _rigid.velocity = moveDir;
+            }
         }
     }
 

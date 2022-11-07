@@ -28,6 +28,7 @@ public class Player_Stage1 : MonoBehaviour
     private Transform _sprite;
     private Player_Stage1_JumpGauge _jumpGauge;
     private CapsuleCollider2D _capsuleCollider2D;
+    private ParticleSystem _playerRunParticle;
 
     private int _jumpCount = 1;
     private float _horizontalInput = 0;
@@ -42,6 +43,7 @@ public class Player_Stage1 : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
         _jumpGauge = transform.Find("JumpGauge").GetComponent<Player_Stage1_JumpGauge>();
         _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        _playerRunParticle = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Start() {
@@ -67,6 +69,10 @@ public class Player_Stage1 : MonoBehaviour
             FlipSprite(_horizontalInput);
 
             if(_playerEnum == PlayerEnum.Idle){
+                //Player Run Particle Play
+                if(_horizontalInput != 0 && !_playerRunParticle.isPlaying) _playerRunParticle.Play();
+                else if(_horizontalInput == 0 && _playerRunParticle.isPlaying) _playerRunParticle.Stop();
+
                 Vector3 moveDir = new Vector3(_horizontalInput * _speed, _rigid.velocity.y);
                 _rigid.velocity = moveDir;
             }
@@ -74,7 +80,6 @@ public class Player_Stage1 : MonoBehaviour
     }
 
     private void FlipSprite(float x){
-
         if(x > 0){
             _sprite.localScale = new Vector3(1, 1, 1);
         }
@@ -88,6 +93,7 @@ public class Player_Stage1 : MonoBehaviour
 
         if(!_isJump){
             if(Input.GetKey(KeyCode.Space)){
+                if(_playerRunParticle.isPlaying) _playerRunParticle.Stop();
                 if(!_isActiveGauge) GaugePopUp(true, 1f);
                 _rigid.velocity = Vector2.zero;
                 _playerEnum = PlayerEnum.JumpReady;

@@ -9,6 +9,7 @@ public class GameManager : MonoSingleton<GameManager>
     public ChallengeManager ChallengeManager;
     public UIManager UIManager;
     public CursorManager CursorManager;
+    public CameraManager CameraManager;
 
     private void Awake() {
         foreach(GameObject obj in _poolList){
@@ -16,8 +17,9 @@ public class GameManager : MonoSingleton<GameManager>
             //Create Pooling Object
         }
         
-        ChallengeManager = GetComponent<ChallengeManager>();
-        UIManager = GetComponent<UIManager>();
-        CursorManager = GetComponent<CursorManager>();
+        ChallengeManager = transform.parent.GetComponentInChildren<ChallengeManager>();
+        UIManager = transform.parent.GetComponentInChildren<UIManager>();
+        CursorManager = transform.parent.GetComponentInChildren<CursorManager>();
+        CameraManager = transform.parent.GetComponentInChildren<CameraManager>();
     }
 }

@@ -8,6 +8,10 @@ public class Player_Stage1_PlayerHP : MonoBehaviour, IDamage
 
     private float _currentHP;
 
+    private void Start() {
+        _currentHP = _maxHP;
+    }
+
     public void OnDamage(float damage)
     {
         _currentHP -= damage;
@@ -18,5 +22,6 @@ public class Player_Stage1_PlayerHP : MonoBehaviour, IDamage
 
     private void OnPlayerDie(){
         Debug.Log("주금");
+        GameManager.Instance.CameraManager.CamSetting(null);
     }
 }

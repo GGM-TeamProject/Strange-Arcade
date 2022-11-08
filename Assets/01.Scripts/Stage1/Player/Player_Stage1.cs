@@ -6,7 +6,8 @@ using DG.Tweening;
 public enum PlayerEnum{
     Idle,
     JumpReady,
-    Jump
+    Jump,
+    Hit
 }
 
 public class Player_Stage1 : MonoBehaviour
@@ -48,6 +49,7 @@ public class Player_Stage1 : MonoBehaviour
 
     private void Start() {
         GaugePopUp(false, 0f);
+        GameManager.Instance.CameraManager.CamSetting(transform, false, true, new Vector2(0, 2f));
     }
 
     private void Update() {
@@ -139,6 +141,14 @@ public class Player_Stage1 : MonoBehaviour
             _playerEnum = PlayerEnum.Idle;
             _isJump = false;
             _jumpCount = 1;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.transform.CompareTag("Lava")){
+            _playerEnum = PlayerEnum.Hit;
+            IDamage damage = transform.GetComponent<IDamage>();
+            damage.OnDamage(10);
         }
     }
 }

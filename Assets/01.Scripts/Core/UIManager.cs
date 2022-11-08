@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
 
     private bool _isMovePanel = false;
     #endregion
+
+    [SerializeField] private Image _gameOverPanel;
     
     private void Awake() {
         _challengePanel = GameObject.Find("Screen/Main Canvas/ChallengeClearPanel").GetComponent<RectTransform>();
@@ -28,6 +30,22 @@ public class UIManager : MonoBehaviour
 
     private void Start() {
         _challengePanel.anchoredPosition3D = new Vector3(OUT_POS_X, -5, 0);
+    }
+
+    public void OnGameOverPanel(){
+        _gameOverPanel.gameObject.SetActive(true);
+        _gameOverPanel.DOFade(1, 0.3f);
+        _gameOverPanel.transform.GetComponentInChildren<TextMeshProUGUI>().DOFade(1, 0.3f);
+    }
+
+    public void OffGameOverPanel(){
+        Sequence sq = DOTween.Sequence();
+
+        sq.Append(_gameOverPanel.DOFade(0, 0.3f));
+        sq.Join(_gameOverPanel.transform.GetComponentInChildren<TextMeshProUGUI>().DOFade(1, 0.3f));
+        sq.OnComplete(() => {
+            _gameOverPanel.gameObject.SetActive(false);
+        });
     }
 
     public void PopUpChallengePanel(string challengeName, Sprite challengeSprite){

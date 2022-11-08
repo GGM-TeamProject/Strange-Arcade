@@ -7,11 +7,15 @@ public enum PlayerEnum{
     Idle,
     JumpReady,
     Jump,
-    Hit
+    Hit,
+    Die
 }
 
 public class Player_Stage1 : MonoBehaviour
 {
+    [Header("InitPos")]
+    [SerializeField] private Vector3 _initPos;
+
     [Header("Movement Value")]
     [SerializeField] private float _jumpPower;
     [SerializeField] private float _speed;
@@ -23,6 +27,7 @@ public class Player_Stage1 : MonoBehaviour
 
     [Header("PlayerEnumSet")]
     [SerializeField] private PlayerEnum _playerEnum = PlayerEnum.Idle;
+    public PlayerEnum PlayerEnum {get => _playerEnum; set => _playerEnum = value;}
 
     private Rigidbody2D _rigid;
     private Animator _anim;
@@ -31,9 +36,9 @@ public class Player_Stage1 : MonoBehaviour
     private CapsuleCollider2D _capsuleCollider2D;
     private ParticleSystem _playerRunParticle;
 
-    private int _jumpCount = 1;
     private float _horizontalInput = 0;
     private bool _isJump = false;
+    private bool _onPlatform = false;
     private bool _isMove = false;
     private bool _isActiveGauge = false;
 
@@ -44,18 +49,26 @@ public class Player_Stage1 : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
         _jumpGauge = transform.Find("JumpGauge").GetComponent<Player_Stage1_JumpGauge>();
         _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
-        _playerRunParticle = GetComponentInChildren<ParticleSystem>();
+        _playerRunParticle = transform.Find("Sprite/PlayerRunEffect").GetComponent<ParticleSystem>();
     }
 
     private void Start() {
+        InitSetting();
         GaugePopUp(false, 0f);
         GameManager.Instance.CameraManager.CamSetting(transform, false, true, new Vector2(0, 2f));
     }
 
     private void Update() {
+        if(_playerEnum == PlayerEnum.Die) return;
+
+        PlatformCheck();
         Move();
         Jump();
         AnimationSet();
+    }
+
+    public void InitSetting(){
+        transform.position = _initPos;
     }
 
     private void AnimationSet(){
@@ -93,7 +106,7 @@ public class Player_Stage1 : MonoBehaviour
     private void Jump(){
         _jumpGauge.SetJumpGauge(_jumpPower);
 
-        if(!_isJump){
+        if(!_isJump && _onPlatform){
             if(Input.GetKey(KeyCode.Space)){
                 if(_playerRunParticle.isPlaying) _playerRunParticle.Stop();
                 if(!_isActiveGauge) GaugePopUp(true, 1f);
@@ -107,7 +120,6 @@ public class Player_Stage1 : MonoBehaviour
             }
 
             if(Input.GetKeyUp(KeyCode.Space)){
-                _jumpCount--;
                 _playerEnum = PlayerEnum.Jump;
                 _isJump = true;
 
@@ -136,19 +148,29 @@ public class Player_Stage1 : MonoBehaviour
         valueSprite.DOFade((isActive ? 1 : 0), delayTime);
     }
 
+    private void PlatformCheck(){
+        RaycastHit2D hit = Physics2D.CapsuleCast(_capsuleCollider2D.bounds.center, _capsuleCollider2D.size, CapsuleDirection2D.Vertical, 0, Vector2.down, 0.1f, LayerMask.GetMask("Platform"));
+
+        _onPlatform = hit;
+    }
+
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.transform.CompareTag("Platform")){
             _playerEnum = PlayerEnum.Idle;
             _isJump = false;
-            _jumpCount = 1;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.transform.CompareTag("Lava")){
+        if(other.transform.CompareTag("Lava") && _playerEnum != PlayerEnum.Die){
             _playerEnum = PlayerEnum.Hit;
+
+            _rigid.velocity = Vector2.zero;
+            _rigid.velocity = Vector2.up * 6;
+
+            other.transform.GetComponent<Lava>().OnMove = false;
             IDamage damage = transform.GetComponent<IDamage>();
-            damage.OnDamage(10);
+            damage.OnDamage(10, () => {InitSetting(); other.transform.GetComponent<Lava>().InitSet();});
         }
     }
 }

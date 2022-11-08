@@ -40,5 +40,5 @@ Material:
     m_Floats:
     - _WaveSpeed: 4
     m_Colors:
-    - _Color: {r: 21.112127, g: 14.157544, b: 0, a: 1}
+    - _Color: {r: 3.5500941, g: 3.5500941, b: 3.5500941, a: 1}
   m_BuildTextureStacks: []

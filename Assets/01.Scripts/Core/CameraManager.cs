@@ -13,7 +13,6 @@ public class CameraManager : MonoBehaviour
     public Transform FallowTarget = null;
 
     private Camera _gameCamera;
-
     private Vector3 _initCamPos = new Vector3(0, 0, -10);
 
     private void Awake() {
@@ -38,6 +37,18 @@ public class CameraManager : MonoBehaviour
         movementValue += (Vector3)Offset;
 
         return movementValue;
+    }
+
+    public void CameraZoom(float value, float zoomSpeed = 10){
+        StartCoroutine(CameraZoomCoroutine(value, zoomSpeed));
+    }
+
+    IEnumerator CameraZoomCoroutine(float value, float zoomSpeed){
+        float currentValue = _gameCamera.fieldOfView;
+        while(_gameCamera.fieldOfView != value){
+            _gameCamera.fieldOfView += ((currentValue > value) ? -0.1f : 0.1f) * zoomSpeed;
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 
     public void CamSetting(Transform target, bool canFallow_X = true, bool canFallow_Y = true, Vector2? offset = null){

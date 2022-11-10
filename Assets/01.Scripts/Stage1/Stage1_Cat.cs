@@ -36,9 +36,9 @@ public class Stage1_Cat : MonoBehaviour
     private void SpawnTimeTimer(){
         _currentTime += Time.deltaTime;
 
-        if(_currentTime >= _summonDelayMin){
+        if(_currentTime >= _summonMinusTime){
             _summonDelay--;
-            Mathf.Clamp(_summonDelay, _summonDelayMin, 5);
+            _summonDelay = Mathf.Clamp(_summonDelay, _summonDelayMin, 5);
             _currentTime = 0;
         }
     }

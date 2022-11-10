@@ -8,10 +8,10 @@ public class Player_Stage1_PlayerHP : MonoBehaviour, IDamage
     [SerializeField] private float _maxHP = 5;
 
     private float _currentHP;
-    private ParticleSystem _playerHitParticle;
+    private ParticleSystem _playerDieParticle;
 
     private void Awake() {
-        _playerHitParticle = transform.Find("PlayerHitParticle").GetComponent<ParticleSystem>();
+        _playerDieParticle = transform.Find("PlayerDieParticle").GetComponent<ParticleSystem>();
     }
 
     private void Start() {
@@ -28,13 +28,11 @@ public class Player_Stage1_PlayerHP : MonoBehaviour, IDamage
 
     private void OnPlayerDie(UnityEvent CallBack){
         Debug.Log("주금");
-        _playerHitParticle.Play();
+        _playerDieParticle.Play();
         StartCoroutine(PlayerDieCoroutine(CallBack));
     }
 
     IEnumerator PlayerDieCoroutine(UnityEvent CallBack){
-        GetComponent<Player_Stage1>().PlayerEnum = PlayerEnum.Die;
-
         yield return new WaitForSeconds(0.5f);
         GameManager.Instance.UIManager.OnGameOverPanel();
 

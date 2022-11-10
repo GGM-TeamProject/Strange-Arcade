@@ -16,7 +16,7 @@ public enum PlayerEnum{
 public class Player_Stage1 : MonoBehaviour
 {
     [Header("PlayerDieAction")]
-    public UnityEvent _playerDieAction;
+    [SerializeField] private UnityEvent _playerDieAction;
 
     [Header("InitPos")]
     [SerializeField] private Vector3 _initPos;
@@ -30,6 +30,11 @@ public class Player_Stage1 : MonoBehaviour
     [SerializeField] private float _maxJumpPower;
     [SerializeField] private float _minJumpPower;
 
+    [Header("PlayerDamageValue")]
+    [SerializeField] private float _normalDamage = 1f;
+    [SerializeField] private float _instantDeathDamage = 100f;
+    [SerializeField] private float _stunTime = 3f;
+ 
     [Header("PlayerEnumSet")]
     [SerializeField] private PlayerEnum _playerEnum = PlayerEnum.Idle;
     public PlayerEnum PlayerEnum {get => _playerEnum; set => _playerEnum = value;}
@@ -40,6 +45,7 @@ public class Player_Stage1 : MonoBehaviour
     private Player_Stage1_JumpGauge _jumpGauge;
     private CapsuleCollider2D _capsuleCollider2D;
     private ParticleSystem _playerRunParticle;
+    private Animator _playerHitAnimation;
 
     private float _horizontalInput = 0;
     private bool _isJump = false;
@@ -55,6 +61,7 @@ public class Player_Stage1 : MonoBehaviour
         _jumpGauge = transform.Find("JumpGauge").GetComponent<Player_Stage1_JumpGauge>();
         _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         _playerRunParticle = transform.Find("Sprite/PlayerRunEffect").GetComponent<ParticleSystem>();
+        _playerHitAnimation = transform.Find("PlayerHitAnimation").GetComponent<Animator>();
     }
 
     private void Start() {
@@ -67,9 +74,12 @@ public class Player_Stage1 : MonoBehaviour
         if(_playerEnum == PlayerEnum.Die) return;
 
         PlatformCheck();
-        Move();
-        Jump();
         AnimationSet();
+
+        if(!(_playerEnum == PlayerEnum.Hit)){
+            Move();
+            Jump();
+        }
     }
 
     public void InitSetting(){
@@ -137,13 +147,6 @@ public class Player_Stage1 : MonoBehaviour
         }
     }
 
-    IEnumerator PlayJumpParticle(Vector2 summonPos){
-        GameObject jumpParticle = PoolManager.Instance.Pop("PlayerJumpEffect");
-        jumpParticle.transform.position = summonPos;
-        yield return new WaitUntil(() => !jumpParticle.GetComponent<ParticleSystem>().isPlaying);
-        PoolManager.Instance.Push(jumpParticle);
-    }
-
     private void GaugePopUp(bool isActive, float delayTime){
         _isActiveGauge = isActive;
         SpriteRenderer valueSprite = _jumpGauge.ValueTrm.GetComponentInChildren<SpriteRenderer>();
@@ -159,23 +162,48 @@ public class Player_Stage1 : MonoBehaviour
         _onPlatform = hit;
     }
 
+    IEnumerator PlayJumpParticle(Vector2 summonPos){
+        GameObject jumpParticle = PoolManager.Instance.Pop("PlayerJumpEffect");
+        jumpParticle.transform.position = summonPos;
+        yield return new WaitUntil(() => !jumpParticle.GetComponent<ParticleSystem>().isPlaying);
+        PoolManager.Instance.Push(jumpParticle);
+    }
+
+    IEnumerator PlayerStun(float stunTime){
+        _playerHitAnimation.Play("PlayerHit");
+        yield return new WaitForSeconds(stunTime);
+        _playerEnum = PlayerEnum.Idle;
+    }
+
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.transform.CompareTag("Platform")){
             _playerEnum = PlayerEnum.Idle;
             _isJump = false;
         }
+
+        if(other.transform.CompareTag("Enemy")){
+            _playerEnum = PlayerEnum.Hit;
+
+            StopCoroutine(PlayerStun(_stunTime));
+            StartCoroutine(PlayerStun(_stunTime));
+
+            IDamage damage = transform.GetComponent<IDamage>();
+            damage.OnDamage(_normalDamage, _playerDieAction);
+
+            PoolManager.Instance.Push(other.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.transform.CompareTag("Lava") && _playerEnum != PlayerEnum.Die){
-            _playerEnum = PlayerEnum.Hit;
+            _playerEnum = PlayerEnum.Die;
 
             _rigid.velocity = Vector2.zero;
             _rigid.velocity = Vector2.up * 6;
 
             other.transform.GetComponent<Lava>().OnMove = false;
             IDamage damage = transform.GetComponent<IDamage>();
-            damage.OnDamage(10, _playerDieAction);
+            damage.OnDamage(_instantDeathDamage, _playerDieAction);
         }
     }
 }

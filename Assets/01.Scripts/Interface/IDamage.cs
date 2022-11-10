@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.Events;
 
 public interface IDamage
 {
-    public void OnDamage(float damage, Action CallBack = null);
+    public void OnDamage(float damage, UnityEvent CallBack = null);
 }

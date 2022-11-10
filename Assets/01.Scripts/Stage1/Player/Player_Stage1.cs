@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public enum PlayerEnum{
     Idle,
@@ -13,6 +15,9 @@ public enum PlayerEnum{
 
 public class Player_Stage1 : MonoBehaviour
 {
+    [Header("PlayerDieAction")]
+    public UnityEvent _playerDieAction;
+
     [Header("InitPos")]
     [SerializeField] private Vector3 _initPos;
 
@@ -170,7 +175,7 @@ public class Player_Stage1 : MonoBehaviour
 
             other.transform.GetComponent<Lava>().OnMove = false;
             IDamage damage = transform.GetComponent<IDamage>();
-            damage.OnDamage(10, () => {InitSetting(); other.transform.GetComponent<Lava>().InitSet();});
+            damage.OnDamage(10, _playerDieAction);
         }
     }
 }

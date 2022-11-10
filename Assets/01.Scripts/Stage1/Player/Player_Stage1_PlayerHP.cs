@@ -1,7 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player_Stage1_PlayerHP : MonoBehaviour, IDamage
 {
@@ -18,7 +18,7 @@ public class Player_Stage1_PlayerHP : MonoBehaviour, IDamage
         _currentHP = _maxHP;
     }
 
-    public void OnDamage(float damage, Action CallBack = null)
+    public void OnDamage(float damage, UnityEvent CallBack = null)
     {
         _currentHP -= damage;
         if(_currentHP <= 0){
@@ -26,13 +26,13 @@ public class Player_Stage1_PlayerHP : MonoBehaviour, IDamage
         }
     }
 
-    private void OnPlayerDie(Action CallBack){
+    private void OnPlayerDie(UnityEvent CallBack){
         Debug.Log("주금");
         _playerHitParticle.Play();
         StartCoroutine(PlayerDieCoroutine(CallBack));
     }
 
-    IEnumerator PlayerDieCoroutine(Action CallBack){
+    IEnumerator PlayerDieCoroutine(UnityEvent CallBack){
         GetComponent<Player_Stage1>().PlayerEnum = PlayerEnum.Die;
 
         yield return new WaitForSeconds(0.5f);

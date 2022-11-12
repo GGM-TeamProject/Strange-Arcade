@@ -9,7 +9,7 @@ public class DataManager : MonoSingleton<DataManager>
     private User user;
     public User User {get => user; set => user = value;}
 
-    private static string SAVE_PATH = "";
+    private string SAVE_PATH = "";
     private const string SAVE_FILE = "/UserFile.Json";
 
     private void Awake() {
@@ -42,7 +42,7 @@ public class DataManager : MonoSingleton<DataManager>
         SaveToJson(data);
     }
 
-    public static void SaveToJson<T>(T data){
+    private void SaveToJson<T>(T data){
         string stringJson = JsonUtility.ToJson(data, true);
         File.WriteAllText(SAVE_PATH + SAVE_FILE, stringJson, System.Text.Encoding.UTF8);
     }
@@ -51,10 +51,13 @@ public class DataManager : MonoSingleton<DataManager>
         SaveToJson(user);
     }
 
-    private void ResetDate(){
+    [ContextMenu("Reset User Date")]
+    public void ResetDate(){
+        LoadFromJson();
         for(int i = 0; i < user.clearChallenge.Length; i++){
             user.clearChallenge[i] = false;
         }
+        SaveFile();
     } 
 
     private void OnApplicationQuit() {
@@ -70,13 +73,8 @@ public class DataEditor : Editor{
         base.OnInspectorGUI();
 
         if(GUILayout.Button("데이터 리셋")){
-            User user = new User() {
-                userName = null,
-                clearChallenge = new bool[10]
-            };
-
-            DataManager.SaveToJson(user);
-            DataManager.Instance.User = user;
+            DataManager dataManger = target as DataManager;
+            dataManger.ResetDate();
         }
     }
 }

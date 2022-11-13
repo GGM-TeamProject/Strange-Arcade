@@ -46,6 +46,7 @@ public class Player_Stage1 : MonoBehaviour
     private CapsuleCollider2D _capsuleCollider2D;
     private ParticleSystem _playerRunParticle;
     private Animator _playerHitAnimation;
+    private ParticleSystem _playerStunParticle;
 
     private float _horizontalInput = 0;
     private bool _isJump = false;
@@ -61,6 +62,7 @@ public class Player_Stage1 : MonoBehaviour
         _jumpGauge = transform.Find("JumpGauge").GetComponent<Player_Stage1_JumpGauge>();
         _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         _playerRunParticle = transform.Find("Sprite/PlayerRunEffect").GetComponent<ParticleSystem>();
+        _playerStunParticle = transform.Find("StunParticle").GetComponent<ParticleSystem>();
         _playerHitAnimation = transform.Find("PlayerHitAnimation").GetComponent<Animator>();
     }
 
@@ -171,13 +173,15 @@ public class Player_Stage1 : MonoBehaviour
 
     IEnumerator PlayerStun(float stunTime){
         _playerHitAnimation.Play("PlayerHit");
+        _playerStunParticle.Play();
         yield return new WaitForSeconds(stunTime);
+        _playerStunParticle.Stop();
         _playerEnum = PlayerEnum.Idle;
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.transform.CompareTag("Platform")){
-            _playerEnum = PlayerEnum.Idle;
+            if(_playerEnum != PlayerEnum.Hit) _playerEnum = PlayerEnum.Idle;
             _isJump = false;
         }
 

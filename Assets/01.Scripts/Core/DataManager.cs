@@ -51,15 +51,6 @@ public class DataManager : MonoSingleton<DataManager>
         SaveToJson(user);
     }
 
-    [ContextMenu("Reset User Date")]
-    public void ResetDate(){
-        LoadFromJson();
-        for(int i = 0; i < user.clearChallenge.Length; i++){
-            user.clearChallenge[i] = false;
-        }
-        SaveFile();
-    } 
-
     private void OnApplicationQuit() {
         SaveFile();
     }
@@ -73,8 +64,12 @@ public class DataEditor : Editor{
         base.OnInspectorGUI();
 
         if(GUILayout.Button("데이터 리셋")){
-            DataManager dataManger = target as DataManager;
-            dataManger.ResetDate();
+            string SAVE_PATH = Application.dataPath + "/Save";
+            string SAVE_FILE = "/UserFile.Json";
+
+            User resetData = new User();
+            string stringJson = JsonUtility.ToJson(resetData, true);
+            File.WriteAllText(SAVE_PATH + SAVE_FILE, stringJson, System.Text.Encoding.UTF8);
         }
     }
 }

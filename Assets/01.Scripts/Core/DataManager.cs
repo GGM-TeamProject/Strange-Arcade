@@ -62,8 +62,8 @@ public class DataEditor : Editor{
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-
-        if(GUILayout.Button("데이터 리셋")){
+                
+        if(GUILayout.Button("데이터 리셋", GUILayout.Height(25), GUILayout.Width(100))){
             string SAVE_PATH = Application.dataPath + "/Save";
             string SAVE_FILE = "/UserFile.Json";
 

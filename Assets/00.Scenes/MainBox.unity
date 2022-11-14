@@ -484,9 +484,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79284b0a27ea4bc4eb034ec7cbc5acd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _accel: 50
-  _deAccel: 50
-  _maxSpeed: 10
+  _accel: 30
+  _deAccel: 30
+  _maxSpeed: 6
 --- !u!50 &191863607
 Rigidbody2D:
   serializedVersion: 4
@@ -1880,6 +1880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 539593892}
   - component: {fileID: 539593893}
+  - component: {fileID: 539593894}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -1954,6 +1955,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &539593894
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539593891}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 015446d4b32a1ea4992e88bce8e238b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &584043205
 GameObject:
   m_ObjectHideFlags: 0

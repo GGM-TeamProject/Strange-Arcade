@@ -22,4 +22,11 @@ public class GameManager : MonoSingleton<GameManager>
         CursorManager = transform.parent.GetComponentInChildren<CursorManager>();
         CameraManager = transform.parent.GetComponentInChildren<CameraManager>();
     }
+
+    public IEnumerator TurnObject(){
+        while(DataManager.Instance.User.CurrentPlayStage == 2){
+            yield return null;
+            //오브젝트 회전하는거 구현해야함
+        }
+    }
 }

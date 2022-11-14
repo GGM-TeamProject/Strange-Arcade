@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class User
 {
-    public string userName;
+    public int CurrentPlayStage = 0;
+    public int MaxClearStage = 1;
     public bool[] clearChallenge = new bool[10];
 }

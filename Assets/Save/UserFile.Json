@@ -1,5 +1,6 @@
 ﻿{
-    "userName": "",
+    "CurrentPlayStage": 0,
+    "MaxClearStage": 1,
     "clearChallenge": [
         false,
         false,

@@ -7,6 +7,7 @@ TagManager:
   - Platform
   - Lava
   - Enemy
+  - Border
   layers:
   - Default
   - TransparentFX

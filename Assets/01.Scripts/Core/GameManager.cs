@@ -11,9 +11,14 @@ public class GameManager : MonoSingleton<GameManager>
     public CursorManager CursorManager;
     public CameraManager CameraManager;
 
+    private Transform _bulletStore;
+
     private void Awake() {
+        _bulletStore = GameObject.Find("Screen/Stages/Stage_2/RollObjects").transform.Find("Bullets");
+
         foreach(GameObject obj in _poolList){
-            PoolManager.Instance.CreatePool(obj, transform);
+            Transform parent = (obj.name == "Bullet") ? _bulletStore : transform;
+            PoolManager.Instance.CreatePool(obj, parent);
             //Create Pooling Object
         }
         
@@ -21,12 +26,5 @@ public class GameManager : MonoSingleton<GameManager>
         UIManager = transform.parent.GetComponentInChildren<UIManager>();
         CursorManager = transform.parent.GetComponentInChildren<CursorManager>();
         CameraManager = transform.parent.GetComponentInChildren<CameraManager>();
-    }
-
-    public IEnumerator TurnObject(){
-        while(DataManager.Instance.User.CurrentPlayStage == 2){
-            yield return null;
-            //오브젝트 회전하는거 구현해야함
-        }
     }
 }

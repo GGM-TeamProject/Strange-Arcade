@@ -8,9 +8,15 @@ public class Stage2_Bullet : MonoBehaviour
 
     private Rigidbody2D _rigid;
     private Vector2 _lastVelocity = default(Vector2);
+    
+    private int _destroyCnt = 3;
 
     private void Awake() {
         _rigid = GetComponent<Rigidbody2D>();
+    }
+
+    private void OnEnable() {
+        _destroyCnt = 3;
     }
 
     private void Update() {
@@ -24,6 +30,12 @@ public class Stage2_Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         //이거 물어보기
         if(other.transform.CompareTag("Player") || other.transform.CompareTag("Border")){
+            _destroyCnt--;
+            if(_destroyCnt <= 0){
+                Debug.Log("총알 삭제");
+                PoolManager.Instance.Push(gameObject);
+            }
+
             Vector2 dir = Vector2.Reflect(_lastVelocity.normalized, other.contacts[0].normal);
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);

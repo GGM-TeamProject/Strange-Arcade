@@ -13,12 +13,12 @@ public class Stage2_Bullet : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
     }
 
-    private void Start() {
-        _rigid.velocity = new Vector2(1, 1) * _speed;
-    }
-
     private void Update() {
         _lastVelocity = _rigid.velocity;
+    }
+
+    public void SetDirection(Vector3 direction){
+        _rigid.velocity = direction * _speed;
     }
 
     private void OnCollisionEnter2D(Collision2D other) {

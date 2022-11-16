@@ -19,7 +19,7 @@ public class RollObject : MonoBehaviour
     }
 
     private void Start() {
-        StartCoroutine(TurnCoroutine());
+        //StartCoroutine(TurnCoroutine());
     }
 
     IEnumerator TurnCoroutine(){

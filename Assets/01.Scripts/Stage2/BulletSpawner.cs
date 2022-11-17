@@ -48,8 +48,8 @@ public class BulletSpawner : MonoBehaviour
                 StartCoroutine(_attackActions[currentAttack], _spawners[_attackCnt]);
                 _attackCnt++;
                 if(_attackCnt >= 3) _attackCnt = 0;
-                yield return new WaitForSeconds(_spawnDelay);
             }
+            yield return new WaitForSeconds(_spawnDelay);
         }
     }
 

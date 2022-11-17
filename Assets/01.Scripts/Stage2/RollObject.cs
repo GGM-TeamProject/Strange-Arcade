@@ -38,6 +38,7 @@ public class RollObject : MonoBehaviour
         sq.OnComplete(() => {
             _isRoll = false;
             _rollCoolTime -= _rollCoolDownValue;
+            _rollCoolTime = Mathf.Clamp(_rollCoolTime, 5, 30);
         });
     }
 }

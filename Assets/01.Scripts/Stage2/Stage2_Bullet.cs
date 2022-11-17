@@ -7,11 +7,13 @@ public class Stage2_Bullet : MonoBehaviour
     [SerializeField] private float _speed = 5f;
 
     private Rigidbody2D _rigid;
+    private RollObject _rollObj;
     private Vector2 _lastVelocity = default(Vector2);
     
     private int _destroyCnt = 3;
 
     private void Awake() {
+        _rollObj = transform.parent.parent.GetComponent<RollObject>();
         _rigid = GetComponent<Rigidbody2D>();
     }
 
@@ -32,15 +34,18 @@ public class Stage2_Bullet : MonoBehaviour
         if(other.transform.CompareTag("Player") || other.transform.CompareTag("Border")){
             _destroyCnt--;
             if(_destroyCnt <= 0){
-                Debug.Log("총알 삭제");
                 PoolManager.Instance.Push(gameObject);
             }
 
             Vector2 dir = Vector2.Reflect(_lastVelocity.normalized, other.contacts[0].normal);
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
             
             _rigid.velocity = dir * Mathf.Max(_speed, 0);
+        }
+
+        if(other.transform.CompareTag("Stage2_Cat")){
+
         }
     }
 }

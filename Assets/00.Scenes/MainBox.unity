@@ -7400,7 +7400,7 @@ GameObject:
   - component: {fileID: 1639112769}
   m_Layer: 0
   m_Name: JUNGYEE_0
-  m_TagString: Untagged
+  m_TagString: Stage2_Cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

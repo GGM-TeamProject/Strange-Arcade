@@ -12,6 +12,11 @@ public class BulletSpawner : MonoBehaviour
     private float _spawnDelay = 5f;
     private const float _spawnMinusTime = 30f;
     private float _currentTime = 0f;
+    private RollObject _rollObj;
+
+    private void Awake() {
+        _rollObj = transform.parent.GetComponent<RollObject>();
+    }
 
     private void Start() {
         foreach(Transform t in transform){
@@ -38,11 +43,13 @@ public class BulletSpawner : MonoBehaviour
 
     IEnumerator SpawnBullet(){
         while(true){
-            int currentAttack = Random.Range(0, _attackActions.Length);
-            StartCoroutine(_attackActions[currentAttack], _spawners[_attackCnt]);
-            _attackCnt++;
-            if(_attackCnt >= 3) _attackCnt = 0;
-            yield return new WaitForSeconds(_spawnDelay);
+            if(!_rollObj.IsRoll){
+                int currentAttack = Random.Range(0, _attackActions.Length);
+                StartCoroutine(_attackActions[currentAttack], _spawners[_attackCnt]);
+                _attackCnt++;
+                if(_attackCnt >= 3) _attackCnt = 0;
+                yield return new WaitForSeconds(_spawnDelay);
+            }
         }
     }
 
@@ -55,7 +62,7 @@ public class BulletSpawner : MonoBehaviour
         bullet.transform.position = spawnTrm.position + shotPos;
         bullet.transform.rotation = Quaternion.Euler(0, 0, shotAngle - 90);
         bullet.GetComponent<Stage2_Bullet>().SetDirection(shotPos.normalized);
-        yield return null;
+        yield return new WaitForSeconds(0.2f);
     }
 
     IEnumerator SectorAttack(Transform spawnTrm){

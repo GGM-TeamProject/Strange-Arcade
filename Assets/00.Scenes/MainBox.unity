@@ -471,6 +471,9 @@ GameObject:
   - component: {fileID: 191863604}
   - component: {fileID: 191863608}
   - component: {fileID: 191863607}
+  - component: {fileID: 191863611}
+  - component: {fileID: 191863610}
+  - component: {fileID: 191863609}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -492,7 +495,7 @@ Transform:
   m_Children:
   - {fileID: 539593892}
   m_Father: {fileID: 736735396}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &191863604
 MonoBehaviour:
@@ -570,7 +573,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.049189568, y: 0.000000059604645}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -581,8 +584,53 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.71797943, y: 0.8163587}
   m_EdgeRadius: 0
+--- !u!114 &191863609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191863602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4503728aa46eb8458a271c09c5c6ea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillCool: 10
+  SkillDuration: 0
+  CanSkill: 1
+--- !u!114 &191863610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191863602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160f1cef120ab7e49aa2d686e202793f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillCool: 10
+  SkillDuration: 10
+  CanSkill: 1
+--- !u!114 &191863611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191863602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466056b7a1ad65d4e93db64ef63ba324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillCool: 10
+  SkillDuration: 5
+  CanSkill: 1
 --- !u!1 &204227322
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,6 +717,7 @@ MonoBehaviour:
   - {fileID: 3567456106879835764, guid: 0e125d7a2c9361549bcee6d547b05c01, type: 3}
   - {fileID: 4488304656605605063, guid: 126f1ad422b610846a5c84c844440765, type: 3}
   - {fileID: 5617138265344608762, guid: a7ddb6cfa6a1b934ea8ec09e5e9941db, type: 3}
+  - {fileID: 7299369602317419601, guid: 6e066d12eb8ac404f8ed861871680c03, type: 3}
   ChallengeManager: {fileID: 0}
   UIManager: {fileID: 0}
   CursorManager: {fileID: 0}
@@ -2694,6 +2743,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1639112770}
   - {fileID: 191863603}
   - {fileID: 935486115}
   m_Father: {fileID: 807714284}
@@ -4311,7 +4361,7 @@ Transform:
   - {fileID: 163021782}
   - {fileID: 365294968}
   m_Father: {fileID: 736735396}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &935486116
 MonoBehaviour:
@@ -7401,7 +7451,7 @@ GameObject:
   - component: {fileID: 1639112771}
   - component: {fileID: 1639112772}
   m_Layer: 0
-  m_Name: JUNGYEE_0
+  m_Name: Cat
   m_TagString: Stage2_Cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7466,13 +7516,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1639112768}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.71, y: -4.38, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 736735396}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1639112771
 BoxCollider2D:
@@ -7513,8 +7563,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stageData:
-    maxPos: {x: 4.6, y: 4.4}
-    minPos: {x: -4.7, y: -4.3}
+    maxPos: {x: 4.1, y: 4.4}
+    minPos: {x: -4.2, y: -4.3}
 --- !u!1 &1643346951
 GameObject:
   m_ObjectHideFlags: 0

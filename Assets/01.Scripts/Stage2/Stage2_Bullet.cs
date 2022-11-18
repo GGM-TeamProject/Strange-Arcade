@@ -9,6 +9,7 @@ public class Stage2_Bullet : MonoBehaviour
     private Rigidbody2D _rigid;
     private RollObject _rollObj;
     private Vector2 _lastVelocity = default(Vector2);
+    public Vector2 LastVelocity => _lastVelocity;
     
     private int _destroyCnt = 3;
 
@@ -29,12 +30,18 @@ public class Stage2_Bullet : MonoBehaviour
         _rigid.velocity = direction * _speed;
     }
 
+    public void OnKill(){
+        GameObject particle = PoolManager.Instance.Pop("BulletKillParticle");
+        particle.transform.position = transform.position;
+        PoolManager.Instance.Push(gameObject);
+    }
+
     private void OnCollisionEnter2D(Collision2D other) {
         //이거 물어보기
         if(other.transform.CompareTag("Player") || other.transform.CompareTag("Border")){
             _destroyCnt--;
             if(_destroyCnt <= 0){
-                PoolManager.Instance.Push(gameObject);
+                OnKill();
             }
 
             Vector2 dir = Vector2.Reflect(_lastVelocity.normalized, other.contacts[0].normal);
@@ -45,7 +52,8 @@ public class Stage2_Bullet : MonoBehaviour
         }
 
         if(other.transform.CompareTag("Stage2_Cat")){
-
+            //고양이 데미지 추가하기
+            OnKill();
         }
     }
 }

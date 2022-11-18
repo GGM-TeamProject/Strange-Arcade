@@ -14,6 +14,9 @@ public class BulletSpawner : MonoBehaviour
     private float _currentTime = 0f;
     private RollObject _rollObj;
 
+    private bool _canSpawnBullet = true;
+    public bool CanSpawnBullet {get => _canSpawnBullet; set => _canSpawnBullet = value;}
+
     private void Awake() {
         _rollObj = transform.parent.GetComponent<RollObject>();
     }
@@ -41,9 +44,13 @@ public class BulletSpawner : MonoBehaviour
         }
     }
 
+    public void OnSpawnBulletAble(bool ableSpawnBullet){
+        _canSpawnBullet = ableSpawnBullet;
+    }
+
     IEnumerator SpawnBullet(){
         while(true){
-            if(!_rollObj.IsRoll){
+            if(!_rollObj.IsRoll && _canSpawnBullet){
                 int currentAttack = Random.Range(0, _attackActions.Length);
                 StartCoroutine(_attackActions[currentAttack], _spawners[_attackCnt]);
                 _attackCnt++;

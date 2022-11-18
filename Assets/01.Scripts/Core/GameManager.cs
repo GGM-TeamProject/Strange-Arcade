@@ -12,6 +12,7 @@ public class GameManager : MonoSingleton<GameManager>
     public CameraManager CameraManager;
 
     private Transform _bulletStore;
+    public Transform BulletStore => _bulletStore;
 
     private void Awake() {
         _bulletStore = GameObject.Find("Screen/Stages/Stage_2/RollObjects").transform.Find("Bullets");

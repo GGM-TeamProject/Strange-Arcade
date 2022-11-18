@@ -12,12 +12,20 @@ public class Player_Stage2 : MonoBehaviour
     private Rigidbody2D _rigid;
     private Animator _anim;
 
+    private Dictionary<string, Stage2_PlayerSkill> _playerSkillList = new Dictionary<string, Stage2_PlayerSkill>();
+
     private float _currentVelocity = 0f;
     private Vector2 _movementDirection;
 
     private void Awake() {
         _anim = transform.Find("Sprite").GetComponent<Animator>();
         _rigid = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start() {
+        _playerSkillList.Add("AllKillBullet", transform.GetComponent<PlayerSkill_AllKillBullet>());
+        _playerSkillList.Add("PlayerSizeBig", transform.GetComponent<PlayerSkill_PlayerSizeBig>());
+        _playerSkillList.Add("StopSpawnBullet", transform.GetComponent<PlayerSkill_StopSpawnBullet>());
     }
 
     #region MoveAgent
@@ -52,5 +60,7 @@ public class Player_Stage2 : MonoBehaviour
     }
     #endregion
 
-
+    private void UseSkill(){
+        //이ㄸㅏ 마ㄴㄷㅡㄹ거
+    }
 }

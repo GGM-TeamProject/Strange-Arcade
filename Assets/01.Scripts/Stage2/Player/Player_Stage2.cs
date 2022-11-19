@@ -28,6 +28,10 @@ public class Player_Stage2 : MonoBehaviour
         _playerSkillList.Add("StopSpawnBullet", transform.GetComponent<PlayerSkill_StopSpawnBullet>());
     }
 
+    private void Update() {
+        UseSkill();
+    }
+
     #region MoveAgent
     public void MoveAgent(Vector2 movementInput){
         if(movementInput.sqrMagnitude > 0){
@@ -61,6 +65,14 @@ public class Player_Stage2 : MonoBehaviour
     #endregion
 
     private void UseSkill(){
-        //이ㄸㅏ 마ㄴㄷㅡㄹ거
+        if(Input.GetKeyDown(KeyCode.Z)){
+            _playerSkillList["AllKillBullet"].OnSkill();
+        }
+        else if(Input.GetKeyDown(KeyCode.X)){
+            _playerSkillList["PlayerSizeBig"].OnSkill();
+        }
+        else if(Input.GetKeyDown(KeyCode.C)){
+            _playerSkillList["StopSpawnBullet"].OnSkill();
+        }
     }
 }

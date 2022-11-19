@@ -13,14 +13,15 @@ public abstract class Stage2_PlayerSkill : MonoBehaviour
 
     public abstract void OnSkill();
 
-    protected IEnumerator CoolDown(float SkillCool){
+    protected IEnumerator CoolDown(float normalCool){
         CanSkill = false;
         yield return new WaitForSeconds(SkillDuration);
         CallBackAction?.Invoke();
-        while(this.SkillCool <= 0){
-            this.SkillCool -= Time.deltaTime;
+        while(SkillCool >= 0){
+            SkillCool -= Time.deltaTime;
+            yield return new WaitForFixedUpdate();
         }
         CanSkill = true;
-        this.SkillCool = SkillCool;
+        SkillCool = normalCool;
     }
 }

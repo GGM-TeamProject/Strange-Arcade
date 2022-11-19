@@ -13,8 +13,10 @@ public class PlayerSkill_StopSpawnBullet : Stage2_PlayerSkill
 
     public override void OnSkill()
     {
-        OffSpawner();
-        CoolDown(SkillCool);
+        if(CanSkill){
+            OffSpawner();
+            StartCoroutine(CoolDown(SkillCool));
+        }
     }
 
     private void OffSpawner() => _bulletSpawner.OnSpawnBulletAble(false);

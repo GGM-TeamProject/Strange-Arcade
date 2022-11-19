@@ -11,8 +11,10 @@ public class PlayerSkill_PlayerSizeBig : Stage2_PlayerSkill
 
     public override void OnSkill()
     {
-        ScaleUp();
-        CoolDown(SkillCool);
+        if(CanSkill){
+            ScaleUp();
+            StartCoroutine(CoolDown(SkillCool));
+        }
     }
 
     private void ScaleUp() => transform.DOScale(3, 0.5f);

@@ -46,6 +46,9 @@ public class BulletSpawner : MonoBehaviour
 
     public void OnSpawnBulletAble(bool ableSpawnBullet){
         _canSpawnBullet = ableSpawnBullet;
+        foreach(Transform spawner in _spawners){
+            spawner.Find("Stop").gameObject.SetActive(!ableSpawnBullet);
+        }
     }
 
     IEnumerator SpawnBullet(){

@@ -12,7 +12,8 @@ public class Player_Stage2 : MonoBehaviour
     private Rigidbody2D _rigid;
     private Animator _anim;
 
-    private Dictionary<string, Stage2_PlayerSkill> _playerSkillList = new Dictionary<string, Stage2_PlayerSkill>();
+    [SerializeField] private Stage2_PlayerSkill[] _playerSkills;
+    public Stage2_PlayerSkill[] PlayerSkills => _playerSkills;
 
     private float _currentVelocity = 0f;
     private Vector2 _movementDirection;
@@ -20,12 +21,6 @@ public class Player_Stage2 : MonoBehaviour
     private void Awake() {
         _anim = transform.Find("Sprite").GetComponent<Animator>();
         _rigid = GetComponent<Rigidbody2D>();
-    }
-
-    private void Start() {
-        _playerSkillList.Add("AllKillBullet", transform.GetComponent<PlayerSkill_AllKillBullet>());
-        _playerSkillList.Add("PlayerSizeBig", transform.GetComponent<PlayerSkill_PlayerSizeBig>());
-        _playerSkillList.Add("StopSpawnBullet", transform.GetComponent<PlayerSkill_StopSpawnBullet>());
     }
 
     private void Update() {
@@ -66,13 +61,13 @@ public class Player_Stage2 : MonoBehaviour
 
     private void UseSkill(){
         if(Input.GetKeyDown(KeyCode.Z)){
-            _playerSkillList["AllKillBullet"].OnSkill();
+            _playerSkills[0].OnSkill();
         }
         else if(Input.GetKeyDown(KeyCode.X)){
-            _playerSkillList["PlayerSizeBig"].OnSkill();
+            _playerSkills[1].OnSkill();
         }
         else if(Input.GetKeyDown(KeyCode.C)){
-            _playerSkillList["StopSpawnBullet"].OnSkill();
+            _playerSkills[2].OnSkill();
         }
     }
 }

@@ -14,6 +14,7 @@ public class CameraManager : MonoBehaviour
 
     private Camera _gameCamera;
     private Vector3 _initCamPos = new Vector3(0, 0, -10);
+    private Quaternion _initRotate = Quaternion.Euler(0, 0, 0);
 
     private void Awake() {
         _gameCamera = GameObject.Find("Screen/InGameCamera").GetComponent<Camera>();
@@ -37,6 +38,10 @@ public class CameraManager : MonoBehaviour
         movementValue += (Vector3)Offset;
 
         return movementValue;
+    }
+
+    public void SetCamRotate(Quaternion rotate){
+        _gameCamera.transform.rotation = rotate;
     }
 
     public void CameraZoom(float value, float zoomSpeed = 10){

@@ -7,11 +7,13 @@ public class Stage3_CarInput : MonoBehaviour
 {
     public UnityEvent<Vector2> OnMoveKeyPress;
 
+    public bool _isMirror = false;
+
     private void Update() {
         GetMoveInput();
     }
 
     private void GetMoveInput(){
-        OnMoveKeyPress?.Invoke(new Vector2(Input.GetAxisRaw("Horizontal"), 0));
+        OnMoveKeyPress?.Invoke(new Vector2((_isMirror) ? -Input.GetAxisRaw("Horizontal") : Input.GetAxisRaw("Horizontal"), 0));
     }
 }

@@ -209,5 +209,18 @@ public class Player_Stage1 : MonoBehaviour
             IDamage damage = transform.GetComponent<IDamage>();
             damage.OnDamage(_instantDeathDamage, _playerDieAction);
         }
+
+        if(other.transform.CompareTag("Cat") && _playerEnum != PlayerEnum.Die){
+            StartCoroutine(StageClearCoroutine());
+        }
+    }
+
+    IEnumerator StageClearCoroutine(){
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.UIManager.OnGameClearPanel();
+
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Escape)); //나중에 수정
+        GameManager.Instance.UIManager.OffGameClearPanel();
+        //메인메뉴로 가기
     }
 }

@@ -8,7 +8,7 @@ TagManager:
   - Lava
   - Enemy
   - Border
-  - Stage2_Cat
+  - Cat
   layers:
   - Default
   - TransparentFX

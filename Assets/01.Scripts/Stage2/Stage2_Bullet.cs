@@ -54,7 +54,7 @@ public class Stage2_Bullet : MonoBehaviour
             _rigid.velocity = dir * Mathf.Max(_speed, 0);
         }
 
-        if(other.transform.CompareTag("Stage2_Cat")){
+        if(other.transform.CompareTag("Cat")){
             IDamage damage = other.transform.GetComponent<IDamage>();
             damage?.OnDamage(1f);
             OnKill();

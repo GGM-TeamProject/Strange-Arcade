@@ -3,7 +3,7 @@
     "MaxClearStage": 1,
     "clearChallenge": [
         true,
-        false,
+        true,
         false,
         false,
         false,

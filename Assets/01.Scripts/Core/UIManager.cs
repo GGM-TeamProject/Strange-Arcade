@@ -34,18 +34,18 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnGameClearPanel(){
-        _gameOverPanel.gameObject.SetActive(true);
-        _gameOverPanel.DOFade(1, 0.3f);
-        _gameOverPanel.transform.GetComponentInChildren<TextMeshProUGUI>().DOFade(1, 0.3f);
+        _gameClearPanel.gameObject.SetActive(true);
+        _gameClearPanel.DOFade(1, 0.3f);
+        _gameClearPanel.transform.GetComponentInChildren<TextMeshProUGUI>().DOFade(1, 0.3f);
     }
 
     public void OffGameClearPanel(){
         Sequence sq = DOTween.Sequence();
 
-        sq.Append(_gameOverPanel.DOFade(0, 0.3f));
-        sq.Join(_gameOverPanel.transform.GetComponentInChildren<TextMeshProUGUI>().DOFade(1, 0.3f));
+        sq.Append(_gameClearPanel.DOFade(0, 0.3f));
+        sq.Join(_gameClearPanel.transform.GetComponentInChildren<TextMeshProUGUI>().DOFade(1, 0.3f));
         sq.OnComplete(() => {
-            _gameOverPanel.gameObject.SetActive(false);
+            _gameClearPanel.gameObject.SetActive(false);
         });
     }
 

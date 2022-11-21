@@ -355,7 +355,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -428,8 +428,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c31fb0c40b6bd14fa55708be2728fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _playerDieAction:
+    m_PersistentCalls:
+      m_Calls: []
+  _initPos: {x: 0, y: 0, z: 0}
   _jumpPower: 10
+  _speed: 5
+  _jumpPowerUpSpeed: 0
+  _maxJumpPower: 0
+  _minJumpPower: 0
+  _normalDamage: 1
+  _instantDeathDamage: 100
+  _stunTime: 3
+  _playerEnum: 0
 --- !u!1 &1375135764
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +493,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

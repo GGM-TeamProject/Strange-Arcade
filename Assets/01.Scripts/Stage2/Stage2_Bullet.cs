@@ -8,12 +8,14 @@ public class Stage2_Bullet : MonoBehaviour
 
     private Rigidbody2D _rigid;
     private RollObject _rollObj;
+    private Stage2_Cat _cat;
     private Vector2 _lastVelocity = default(Vector2);
     public Vector2 LastVelocity => _lastVelocity;
     
     private int _destroyCnt = 3;
 
     private void Awake() {
+        _cat = transform.parent.parent.parent.Find("Cat").GetComponent<Stage2_Cat>();
         _rollObj = transform.parent.parent.GetComponent<RollObject>();
         _rigid = GetComponent<Rigidbody2D>();
     }
@@ -23,6 +25,7 @@ public class Stage2_Bullet : MonoBehaviour
     }
 
     private void Update() {
+        if(_cat.CatState == CatState.Die) OnKill();
         _lastVelocity = _rigid.velocity;
     }
 
@@ -52,7 +55,8 @@ public class Stage2_Bullet : MonoBehaviour
         }
 
         if(other.transform.CompareTag("Stage2_Cat")){
-            //고양이 데미지 추가하기
+            IDamage damage = other.transform.GetComponent<IDamage>();
+            damage?.OnDamage(1f);
             OnKill();
         }
     }

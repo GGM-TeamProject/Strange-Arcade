@@ -9,8 +9,8 @@ public abstract class Stage2_PlayerSkill : MonoBehaviour
     public float SkillDuration;
     public bool CanSkill = true; 
 
-    protected Action CallBackAction = null;
-
+    public Action CallBackAction = null;
+    
     public abstract void OnSkill();
 
     protected IEnumerator CoolDown(float normalCool){

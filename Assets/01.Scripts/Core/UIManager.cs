@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image _gameOverPanel;
     
     private void Awake() {
-        _challengePanel = GameObject.Find("Screen/Main Canvas/ChallengeClearPanel").GetComponent<RectTransform>();
+        _challengePanel = GameObject.Find("Screen/BackGroundCanvas/ChallengeClearPanel").GetComponent<RectTransform>();
         _challengeImage = _challengePanel.transform.Find("TrophyImage").GetComponent<Image>();
         _challengeText = _challengePanel.GetComponentInChildren<TextMeshProUGUI>();
     }

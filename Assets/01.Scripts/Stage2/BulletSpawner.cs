@@ -13,11 +13,13 @@ public class BulletSpawner : MonoBehaviour
     private const float _spawnMinusTime = 30f;
     private float _currentTime = 0f;
     private RollObject _rollObj;
+    private Stage2_Cat _cat;
 
     private bool _canSpawnBullet = true;
     public bool CanSpawnBullet {get => _canSpawnBullet; set => _canSpawnBullet = value;}
 
     private void Awake() {
+        _cat = transform.parent.parent.Find("Cat").GetComponent<Stage2_Cat>();
         _rollObj = transform.parent.GetComponent<RollObject>();
     }
 
@@ -31,8 +33,14 @@ public class BulletSpawner : MonoBehaviour
         _attackActions[1] = "SectorAttack";
         _attackActions[2] = "TripleAttack";
 
-        StartCoroutine(SpawnBullet());
+        Init();
     }   
+
+    public void Init(){
+        _spawnDelay = 5;
+        StopAllCoroutines();
+        StartCoroutine(SpawnBullet());
+    }
 
     private void Update() {
         _currentTime += Time.deltaTime;
@@ -52,7 +60,7 @@ public class BulletSpawner : MonoBehaviour
     }
 
     IEnumerator SpawnBullet(){
-        while(true){
+        while(_cat.CatState != CatState.Die){
             if(!_rollObj.IsRoll && _canSpawnBullet){
                 int currentAttack = Random.Range(0, _attackActions.Length);
                 StartCoroutine(_attackActions[currentAttack], _spawners[_attackCnt]);

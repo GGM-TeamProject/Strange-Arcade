@@ -29,6 +29,7 @@ public class Stage1_Cat : MonoBehaviour
     }
 
     public void Init(){
+        _summonDelay = 5f;
         StopAllCoroutines();
         StartCoroutine(UpdatePath());
     }

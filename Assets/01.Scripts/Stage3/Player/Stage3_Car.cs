@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class Stage3_Car : MonoBehaviour, IDamage
 {
+    [SerializeField] private float _speed;
+    public float PlayerSpeed => _speed;
+
     public void OnDamage(float damage, UnityEvent CallBack = null)
     {
         throw new System.NotImplementedException();

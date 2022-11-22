@@ -29,6 +29,7 @@ public class Stage3_Car : MonoBehaviour, IDamage
     private bool _isDash = false;
     private float _currentTime = 0f;
 
+    private MeshTrail _meshTrail;
     private Image _dashValue;
     private TextMeshProUGUI _speedText;
 
@@ -36,6 +37,7 @@ public class Stage3_Car : MonoBehaviour, IDamage
     public bool IsDash => _isDash;
 
     private void Awake() {
+        _meshTrail = GetComponent<MeshTrail>();
         _dashValue = transform.parent.Find("Stage3Canvas/DashGauge/BackGround/ValueImage").GetComponent<Image>();
         _speedText = transform.parent.Find("Stage3Canvas/SpeedText").GetComponent<TextMeshProUGUI>();
     }
@@ -64,6 +66,8 @@ public class Stage3_Car : MonoBehaviour, IDamage
     private IEnumerator DashCoroutine(){
         _speed = _dashSpeed;
 
+        _meshTrail.ActiveTrail(_dashDuration);
+
         _speedLine.SetGradient("ColorGradient", _neonGradient);
         _speedLine.SetFloat("SpawnRate", 256);
         _speedLine.Play();
@@ -72,7 +76,7 @@ public class Stage3_Car : MonoBehaviour, IDamage
 
         _speedText.text = $"{(int)_speed}\n        KM/H";
         _speedText.DOColor(Color.red, 0.5f);
-        _speedText.rectTransform.DOShakeRotation(_dashDuration, 30, 10, 45);
+        _speedText.rectTransform.DOShakeRotation(_dashDuration, 10, 10, 45);
         _dashValue.DOFillAmount(0f, 0.5f);
 
         yield return new WaitForSeconds(_dashDuration);

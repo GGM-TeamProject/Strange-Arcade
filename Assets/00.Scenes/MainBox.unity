@@ -8214,7 +8214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 100
-  _limitPos: {x: 0, y: 0, z: -95}
+  _limitPos: {x: 0, y: 0, z: -90}
   _movePos: {x: 0, y: 0, z: 100}
 --- !u!1 &1161205988
 GameObject:
@@ -14440,7 +14440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 100
-  _limitPos: {x: 0, y: 0, z: -95}
+  _limitPos: {x: 0, y: 0, z: -90}
   _movePos: {x: 0, y: 0, z: 100}
 --- !u!1 &2075203178
 GameObject:
@@ -25475,6 +25475,7 @@ GameObject:
   - component: {fileID: 4157812985832387919}
   - component: {fileID: 4157812985832387918}
   - component: {fileID: 4157812985832387921}
+  - component: {fileID: 4157812985832387922}
   m_Layer: 0
   m_Name: PlayerCar
   m_TagString: Untagged
@@ -25652,7 +25653,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   _dashSpeed: 300
   _dashDuration: 5
-  _dashCool: 30
+  _dashCool: 5
 --- !u!54 &4157812985832387921
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25669,6 +25670,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &4157812985832387922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672778186711363574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3090e97c6a8b14590bc6878816e640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeshRefreshRate: 0.1
+  MeshDestroyDelay: 3
+  PositionToSpawn: {fileID: 4157812985832387916}
+  Mat: {fileID: 2100000, guid: 1a32b236a4aa4cd4cbdc5d4fbbdc1e99, type: 2}
+  ShaderVarRef: _Alpha
+  ShaderVarRate: 0.1
+  ShaderVarRefreshRate: 0.05
 --- !u!1 &4266476810473317800
 GameObject:
   m_ObjectHideFlags: 0

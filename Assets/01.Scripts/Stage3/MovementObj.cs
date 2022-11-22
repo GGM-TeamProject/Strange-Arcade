@@ -18,6 +18,6 @@ public class MovementObj : MonoBehaviour
     private void Update() {
         _moveSpeed = _player.PlayerSpeed;
         transform.position += -Vector3.forward * _moveSpeed * Time.deltaTime;
-        if(transform.position.z < _limitPos.z) transform.position = _movePos;
+        if(transform.position.z <= _limitPos.z) transform.position = _movePos;
     }
 }

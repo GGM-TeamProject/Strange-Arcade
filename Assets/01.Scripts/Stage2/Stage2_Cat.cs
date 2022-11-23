@@ -38,6 +38,10 @@ public class Stage2_Cat : MonoBehaviour, IDamage
         Init();
     }
 
+    private void OnEnable() {
+        _callBack?.Invoke();
+    }
+
     public void Init(){
         _currentHp = _maxHp;
         _catState = CatState.GodMode;

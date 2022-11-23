@@ -67,6 +67,10 @@ public class Stage3_Car : MonoBehaviour, IDamage
         Init();
     }
 
+    private void OnEnable() {
+        _callBack?.Invoke();
+    }
+
     public void Init(){
         _currentHP = _maxHP;
         _playerState = CarState.Idle;

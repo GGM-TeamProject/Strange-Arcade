@@ -84,6 +84,10 @@ public class Player_Stage1 : MonoBehaviour
         }
     }
 
+    private void OnEnable() {
+        _playerDieAction?.Invoke();
+    }
+
     public void InitSetting(){
         transform.position = _initPos;
     }

@@ -5,29 +5,25 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
-public class Stage2_UI : MonoBehaviour
+public class Stage2_UI : Timer
 {
     [SerializeField] private Image[] _skillIcons;
     [SerializeField] private Transform _hpParent = null;
-    [SerializeField] private int _timerTime;
 
     private Stack<Image> _catHp = new Stack<Image>();
 
-    private int _minute = 0;
-    private int _second = 0;
-
     private Player_Stage2 _player;
     private Stage2_Cat _cat;
-    private TextMeshProUGUI _timer;
 
-    private void Awake() {
+    protected override void Awake()
+    {
         _hpParent = transform.Find("CatHp");
         _player = transform.parent.Find("Player").GetComponent<Player_Stage2>();
         _cat = transform.parent.Find("Cat").GetComponent<Stage2_Cat>();
-        _timer = transform.Find("Timer").GetComponent<TextMeshProUGUI>();
+        base.Awake();
     }
 
-    private void Start() {
+    protected override void Start() {
         Init();
     }
 
@@ -45,20 +41,9 @@ public class Stage2_UI : MonoBehaviour
         SetPlayerSKillValue();
     }
 
-    IEnumerator TimerPath(){
-        while(_cat.CatState != CatState.Die){
-            if(_timerTime == 60) _timer.DOColor(Color.red, 60f);
-            Second2MinSec(_timerTime, out _minute, out _second);
-            _timer.text = $"{_minute.ToString("D2")}:{_second.ToString("D2")}";
-            yield return new WaitForSecondsRealtime(1f);
-            --_timerTime;
-        }
-    }
-
     public void HpDownUI(int count){
         StartCoroutine(HpDownCoroutine(count));
     }
-
 
     IEnumerator HpDownCoroutine(int count){
         for(int i = 0; i < count; i++){
@@ -74,15 +59,6 @@ public class Stage2_UI : MonoBehaviour
             }
             yield return new WaitForSeconds(0.01f);
         }
-    }
-
-    private void Second2MinSec(int second, out int Minute, out int Second){
-        Minute = 0; Second = 0;
-        while(second > 60){
-            second -= 60;
-            Minute++;
-        }
-        Second = second;
     }
 
     private void SetPlayerSKillValue(){

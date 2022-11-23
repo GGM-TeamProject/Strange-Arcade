@@ -86,11 +86,11 @@ public class Stage2_Cat : MonoBehaviour, IDamage
 
     IEnumerator PlayerDieCoroutine(UnityEvent CallBack){
         yield return new WaitForSeconds(0.5f);
-        GameManager.Instance.UIManager.OnGameOverPanel();
+        GameManager.Instance.UIManager.OnGameOverPanel(false);
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R)); //나중에 수정
         _currentHp = _maxHp;
         CallBack?.Invoke();
-        GameManager.Instance.UIManager.OffGameOverPanel();
+        GameManager.Instance.UIManager.OffGameOverPanel(false);
     }
 }

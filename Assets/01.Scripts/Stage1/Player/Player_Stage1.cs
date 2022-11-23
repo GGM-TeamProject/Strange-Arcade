@@ -217,10 +217,10 @@ public class Player_Stage1 : MonoBehaviour
 
     IEnumerator StageClearCoroutine(){
         yield return new WaitForSeconds(0.5f);
-        GameManager.Instance.UIManager.OnGameClearPanel();
+        GameManager.Instance.UIManager.OnGameClearPanel(false);
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Escape)); //나중에 수정
-        GameManager.Instance.UIManager.OffGameClearPanel();
+        GameManager.Instance.UIManager.OffGameClearPanel(false);
         //메인메뉴로 가기
     }
 }

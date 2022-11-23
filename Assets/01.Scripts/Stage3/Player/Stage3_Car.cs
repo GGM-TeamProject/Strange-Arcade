@@ -10,6 +10,7 @@ using TMPro;
 public enum CarState{
     Idle,
     GodMode,
+    Hit,
     Die
 }
 
@@ -19,7 +20,6 @@ public class Stage3_Car : MonoBehaviour, IDamage
     [SerializeField] private float _speed = 0f;
     [SerializeField] private float _minAccelPower = 25f;
     [SerializeField] private float _accelPower = 10f;
-    [SerializeField] private float _deAccelPower = 7f;
     [SerializeField] private VisualEffect _speedLine;
 
     [Header("Gradient Preset")]
@@ -38,6 +38,7 @@ public class Stage3_Car : MonoBehaviour, IDamage
 
     [Header("Player HP Value")]
     [SerializeField] private float _maxHP = 5f;
+    [SerializeField] private UnityEvent _callBack = null;
 
     private float _currentHP = 0f;
     private float _dashGauge = 0f;
@@ -124,11 +125,11 @@ public class Stage3_Car : MonoBehaviour, IDamage
     }
 
     private void Accel(){
-        if(Input.GetKey(KeyCode.Space)){
+        if(_playerState == CarState.Idle){
             _speed += Time.deltaTime * _accelPower;
         }
-        else{
-            _speed -= Time.deltaTime * _deAccelPower;
+        else if(_playerState == CarState.Hit){
+            _speed /= 2;
         }
 
         _speedText.text = $"{(int)_speed}\n        KM/H";
@@ -143,8 +144,29 @@ public class Stage3_Car : MonoBehaviour, IDamage
     public void OnDamage(float damage, UnityEvent CallBack = null)
     {
         if(_playerState == CarState.GodMode) return;
+        _currentHP--;
+        if(_currentHP <= 0){
+            OnPlayerDie(_callBack);
+        }
+        else{
+            StartCoroutine(GodMode(_godModeDuration));
+        }
+    }
 
+    private void OnPlayerDie(UnityEvent CallBack){
+        Debug.Log("주금");
+        _playerState = CarState.Die;
+        StartCoroutine(PlayerDieCoroutine(CallBack));
+    }
 
+    IEnumerator PlayerDieCoroutine(UnityEvent CallBack){
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.UIManager.OnGameOverPanel(true);
+
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R)); //나중에 수정
+        _currentHP = _maxHP;
+        CallBack?.Invoke();
+        GameManager.Instance.UIManager.OffGameOverPanel(true);
     }
 
     private void OnTriggerEnter(Collider other) {

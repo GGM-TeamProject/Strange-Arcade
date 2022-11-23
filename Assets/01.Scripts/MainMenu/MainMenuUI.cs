@@ -38,6 +38,7 @@ public class MainMenuUI : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Return)){
             yield return new WaitForSeconds(0.2f);
             Debug.Log($"{stage} 시작");
+            SceneTransManager.Instance.SceneChange($"Stage{stage}");
             _isSelected = false;
         }
         else{

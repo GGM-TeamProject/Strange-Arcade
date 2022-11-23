@@ -11,6 +11,7 @@ public class GameManager : MonoSingleton<GameManager>
     public UIManager UIManager;
     public CursorManager CursorManager;
     public CameraManager CameraManager;
+    public ItemManager ItemManager;
 
     private Transform _bulletStore;
     public Transform BulletStore => _bulletStore;
@@ -28,5 +29,6 @@ public class GameManager : MonoSingleton<GameManager>
         UIManager = transform.parent.GetComponentInChildren<UIManager>();
         CursorManager = transform.parent.GetComponentInChildren<CursorManager>();
         CameraManager = transform.parent.GetComponentInChildren<CameraManager>();
+        ItemManager = transform.parent.GetComponentInChildren<ItemManager>();
     }
 }

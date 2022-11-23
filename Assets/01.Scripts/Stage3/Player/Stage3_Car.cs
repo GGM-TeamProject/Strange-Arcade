@@ -53,6 +53,7 @@ public class Stage3_Car : MonoBehaviour, IDamage
     private MeshRenderer _carMainMesh;
 
     public float PlayerSpeed => _speed;
+    public CarState PlayerState => _playerState;
     public bool IsDash => _isDash;
 
     private void Awake() {
@@ -171,7 +172,7 @@ public class Stage3_Car : MonoBehaviour, IDamage
 
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Item")){
-            Iitem item = other.transform.GetComponent<Iitem>();
+            Item item = other.transform.GetComponent<Item>();
             item?.OnUseItem();
         }
     }

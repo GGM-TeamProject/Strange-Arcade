@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Banana : MonoBehaviour, Iitem
+public class Banana : Item
 {   
     private Stage3_Car _player;
     private Stage3_CarInput _inputSystem;
@@ -15,16 +15,14 @@ public class Banana : MonoBehaviour, Iitem
         _stunParticle = _player.transform.Find("StunParticle").GetComponent<ParticleSystem>();
     }
 
-    public void OnUseItem()
+    public override void OnUseItem()
     {
         _stunParticle.Play();
         _player.transform.DORotate(new Vector3(0, 360, 0), 0.5f, RotateMode.FastBeyond360);
-        _inputSystem._isMirror = true;
-        Invoke("CallBack", 5f);
+        StopCoroutine(GameManager.Instance.ItemManager.BananaCallBack(5f, _stunParticle, _inputSystem));
+        StartCoroutine(GameManager.Instance.ItemManager.BananaCallBack(5f, _stunParticle, _inputSystem));
+        PoolManager.Instance.Push(gameObject);
     }
 
-    private void CallBack(){
-        _stunParticle.Stop();
-        _inputSystem._isMirror = false;
-    }
+    
 }

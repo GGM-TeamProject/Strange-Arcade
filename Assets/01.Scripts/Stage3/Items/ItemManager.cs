@@ -8,6 +8,14 @@ public class ItemManager : MonoBehaviour
     private bool _attackRoutineIsRunning = false;
     public bool AttackRoutineIsRunning => _attackRoutineIsRunning;
 
+    public void BananaMethod(float delay, ParticleSystem stunParticle, Stage3_CarInput inputSystem){
+        StartCoroutine(BananaCallBack(delay, stunParticle, inputSystem));
+    }
+
+    public void ChurMehod(List<SpriteRenderer> churBombs){
+        StartCoroutine(ChurAttack(churBombs));
+    }
+
     public IEnumerator BananaCallBack(float delay, ParticleSystem stunParticle, Stage3_CarInput inputSystem){
         inputSystem._isMirror = true;
         yield return new WaitForSeconds(delay);

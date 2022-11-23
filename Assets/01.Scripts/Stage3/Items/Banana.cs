@@ -19,8 +19,7 @@ public class Banana : Item
     {
         _stunParticle.Play();
         _player.transform.DORotate(new Vector3(0, 360, 0), 0.5f, RotateMode.FastBeyond360);
-        StopCoroutine(GameManager.Instance.ItemManager.BananaCallBack(5f, _stunParticle, _inputSystem));
-        StartCoroutine(GameManager.Instance.ItemManager.BananaCallBack(5f, _stunParticle, _inputSystem));
+        GameManager.Instance.ItemManager.BananaMethod(5f, _stunParticle, _inputSystem);
         PoolManager.Instance.Push(gameObject);
     }
 

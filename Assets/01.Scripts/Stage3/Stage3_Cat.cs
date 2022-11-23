@@ -41,7 +41,7 @@ public class Stage3_Cat : MonoBehaviour
             yield return new WaitForSeconds(_sapwnDelay);
 
             _isSpawnItem = true;
-            Vector3 _spawnPos = new Vector3(transform.position.x, -12, 55);
+            Vector3 _spawnPos = new Vector3(transform.position.x, -11, 55);
             GameObject item = SetRandomItem(randPercentage);
             item.transform.position = _spawnPos;
             yield return new WaitForSeconds(0.5f);

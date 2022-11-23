@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 52832354}
   - component: {fileID: 52832355}
   m_Layer: 0
-  m_Name: ChurBomb (2)
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3201,7 +3201,7 @@ GameObject:
   - component: {fileID: 474653933}
   - component: {fileID: 474653934}
   m_Layer: 0
-  m_Name: ChurBomb
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6842,7 +6842,7 @@ GameObject:
   - component: {fileID: 877301114}
   - component: {fileID: 877301115}
   m_Layer: 0
-  m_Name: ChurBomb (1)
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

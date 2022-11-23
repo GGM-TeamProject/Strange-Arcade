@@ -51,7 +51,7 @@ public class Timer : MonoBehaviour
         GameManager.Instance.UIManager.OnGameClearPanel(true);
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Escape)); //나중에 수정
+        SceneTransManager.Instance.SceneChange("MainMenu");
         GameManager.Instance.UIManager.OffGameClearPanel(true);
-        //메인메뉴로 가기
     }
 }

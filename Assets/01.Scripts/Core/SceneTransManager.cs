@@ -36,13 +36,6 @@ public class SceneTransManager : MonoSingleton<SceneTransManager>
         }
     }
 
-    [ContextMenu("testSceneChange")]
-    public void Test(){
-        if(!_isChangeScene){
-            StartCoroutine(SceneChangeCoroutine("MainMenu"));
-        }
-    }
-
     IEnumerator SceneChangeCoroutine(string sceneName){
         _isChangeScene = true;
         SetCameraRenderer(1);

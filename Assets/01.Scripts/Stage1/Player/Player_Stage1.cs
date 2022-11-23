@@ -221,6 +221,6 @@ public class Player_Stage1 : MonoBehaviour
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Escape)); //나중에 수정
         GameManager.Instance.UIManager.OffGameClearPanel(false);
-        //메인메뉴로 가기
+        SceneTransManager.Instance.SceneChange("MainMenu");
     }
 }

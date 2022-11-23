@@ -9,8 +9,16 @@ public class Stage3_CarInput : MonoBehaviour
 
     public bool _isMirror = false;
 
+    private void Start() {
+        Init();
+    }
+
     private void Update() {
         GetMoveInput();
+    }
+
+    public void Init(){
+        _isMirror = false;
     }
 
     private void GetMoveInput(){

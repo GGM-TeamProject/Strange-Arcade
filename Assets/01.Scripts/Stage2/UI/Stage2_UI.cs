@@ -66,4 +66,14 @@ public class Stage2_UI : Timer
             _skillIcons[i].fillAmount = Mathf.Lerp(0f, 1f, (!_player.PlayerSkills[i].CanSkill) ? 1f - (_player.PlayerSkills[i].SkillCool / 10f) : 1f);
         }
     }
+
+    protected override IEnumerator StageClearCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.UIManager.OnGameClearPanel(false);
+
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Escape)); //나중에 수정
+        GameManager.Instance.UIManager.OffGameClearPanel(false);
+        //메인메뉴로 가기
+    }
 }

@@ -64,7 +64,13 @@ public class Stage3_Car : MonoBehaviour, IDamage
     }
 
     private void Start() {
+        Init();
+    }
+
+    public void Init(){
         _currentHP = _maxHP;
+        _playerState = CarState.Idle;
+        _speed = 0;
     }
 
     private void Update() {

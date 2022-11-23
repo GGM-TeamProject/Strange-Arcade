@@ -21,14 +21,20 @@ public class Timer : MonoBehaviour
         StartCoroutine(TimerPath());
     }
 
+    public void InitTimerSet(){
+        _timerTime = 180;
+        StartCoroutine(TimerPath());
+    }
+
     protected virtual IEnumerator TimerPath(){
-        while(true){
+        while(_timerTime >= 0){
             if(_timerTime == 60) _timer.DOColor(Color.red, 60f);
             Second2MinSec(_timerTime, out _minute, out _second);
             _timer.text = $"{_minute.ToString("D2")}:{_second.ToString("D2")}";
             yield return new WaitForSecondsRealtime(1f);
             --_timerTime;
         }
+        StartCoroutine(StageClearCoroutine());
     }
 
     private void Second2MinSec(int second, out int Minute, out int Second){
@@ -38,5 +44,14 @@ public class Timer : MonoBehaviour
             Minute++;
         }
         Second = second;
+    }
+
+    protected virtual IEnumerator StageClearCoroutine(){
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.UIManager.OnGameClearPanel(true);
+
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Escape)); //나중에 수정
+        GameManager.Instance.UIManager.OffGameClearPanel(true);
+        //메인메뉴로 가기
     }
 }

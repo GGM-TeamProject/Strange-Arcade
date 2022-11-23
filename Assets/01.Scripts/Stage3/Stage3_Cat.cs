@@ -22,6 +22,10 @@ public class Stage3_Cat : MonoBehaviour
         StartCoroutine(UpdatePath());
     }
 
+    public void Init(){
+        StartCoroutine(UpdatePath());
+    }
+
     private void Update() {
         Move();
     }

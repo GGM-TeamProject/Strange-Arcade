@@ -7,6 +7,12 @@ using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
 
+public enum CarState{
+    Idle,
+    GodMode,
+    Die
+}
+
 public class Stage3_Car : MonoBehaviour, IDamage
 {
     [Header("Car Move Value")]
@@ -20,34 +26,59 @@ public class Stage3_Car : MonoBehaviour, IDamage
     [SerializeField] private Gradient _normalGradient;
     [SerializeField] private Gradient _neonGradient;
 
+    [Header("Material Set")]
+    [SerializeField] private Material _normalMat;
+    [SerializeField] private Material _hologramMat;
+
     [Header("Dash Value")]
     [SerializeField] private float _dashSpeed = 300f;
     [SerializeField] private float _dashDuration = 5f;
     [SerializeField] private float _dashCool = 5f;
-    
+    [SerializeField] private float _godModeDuration = 2f;
+
+    [Header("Player HP Value")]
+    [SerializeField] private float _maxHP = 5f;
+
+    private float _currentHP = 0f;
     private float _dashGauge = 0f;
     private bool _isDash = false;
     private float _currentTime = 0f;
 
+    private CarState _playerState = CarState.Idle;
+
     private MeshTrail _meshTrail;
     private Image _dashValue;
     private TextMeshProUGUI _speedText;
+    private MeshRenderer _carMainMesh;
 
     public float PlayerSpeed => _speed;
     public bool IsDash => _isDash;
 
     private void Awake() {
+        _carMainMesh = transform.Find("BODY").GetComponent<MeshRenderer>();
         _meshTrail = GetComponent<MeshTrail>();
         _dashValue = transform.parent.Find("Stage3Canvas/DashGauge/BackGround/ValueImage").GetComponent<Image>();
         _speedText = transform.parent.Find("Stage3Canvas/SpeedText").GetComponent<TextMeshProUGUI>();
     }
 
+    private void Start() {
+        _currentHP = _maxHP;
+    }
+
     private void Update() {
+        _carMainMesh.material = (_playerState == CarState.GodMode) ? _hologramMat : _normalMat;
+
         LineEffect();
         if(!_isDash){
             Accel();
             if(_dashGauge <= 100f) DashCoolTime();
         }
+    }
+
+    IEnumerator GodMode(float duration){
+        _playerState = CarState.GodMode;
+        yield return new WaitForSeconds(duration);
+        _playerState = CarState.Idle;
     }
 
     private void DashCoolTime(){
@@ -64,6 +95,7 @@ public class Stage3_Car : MonoBehaviour, IDamage
     }
 
     private IEnumerator DashCoroutine(){
+        StartCoroutine(GodMode(_dashDuration));
         _speed = _dashSpeed;
 
         _meshTrail.ActiveTrail(_dashDuration);
@@ -110,7 +142,9 @@ public class Stage3_Car : MonoBehaviour, IDamage
 
     public void OnDamage(float damage, UnityEvent CallBack = null)
     {
-        throw new System.NotImplementedException();
+        if(_playerState == CarState.GodMode) return;
+
+
     }
 
     private void OnTriggerEnter(Collider other) {

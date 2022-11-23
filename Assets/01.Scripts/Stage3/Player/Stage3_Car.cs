@@ -129,9 +129,6 @@ public class Stage3_Car : MonoBehaviour, IDamage
         if(_playerState == CarState.Idle){
             _speed += Time.deltaTime * _accelPower;
         }
-        else if(_playerState == CarState.Hit){
-            _speed /= 2;
-        }
 
         _speedText.text = $"{(int)_speed}\n        KM/H";
         _speed = Mathf.Clamp(_speed, 0f, 100f);
@@ -146,6 +143,7 @@ public class Stage3_Car : MonoBehaviour, IDamage
     {
         if(_playerState == CarState.GodMode) return;
         _currentHP--;
+        _speed /= 2.3f;
         if(_currentHP <= 0){
             OnPlayerDie(_callBack);
         }
@@ -173,7 +171,9 @@ public class Stage3_Car : MonoBehaviour, IDamage
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Item")){
             Item item = other.transform.GetComponent<Item>();
-            item?.OnUseItem();
+            if(_playerState != CarState.GodMode) item?.OnUseItem();
+            GameObject impactParticle = PoolManager.Instance.Pop("ImpactParticle");
+            impactParticle.transform.position = other.transform.position;
         }
     }
 }

@@ -1454,8 +1454,9 @@ MonoBehaviour:
   - {fileID: 5617138265344608762, guid: a7ddb6cfa6a1b934ea8ec09e5e9941db, type: 3}
   - {fileID: 7299369602317419601, guid: 6e066d12eb8ac404f8ed861871680c03, type: 3}
   - {fileID: 2068441397782007196, guid: e5b2767a598e3494badc9b8bd5dcf350, type: 3}
-  - {fileID: 1404877612403956718, guid: 7816c7314b62bdb4293732502cc68bfe, type: 3}
+  - {fileID: 5862966117315261233, guid: 7816c7314b62bdb4293732502cc68bfe, type: 3}
   - {fileID: 1434279225780252081, guid: 14568cf88cbf6364ab016a80ff2e7133, type: 3}
+  - {fileID: 2029439713197214046, guid: 061b4dfe0c079784aa84fa3df5881add, type: 3}
   ChallengeManager: {fileID: 0}
   UIManager: {fileID: 0}
   CursorManager: {fileID: 0}
@@ -26220,7 +26221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0
-  _minAccelPower: 25
+  _minAccelPower: 50
   _accelPower: 10
   _speedLine: {fileID: 1535610357}
   _normalGradient:

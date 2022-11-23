@@ -12,7 +12,7 @@ public class PixelizeFeature : ScriptableRendererFeature
     }
 
     [SerializeField]
-    private CustomPassSetting settings;
+    public CustomPassSetting settings;
     private PixelizePass customPass;
 
     public override void Create()

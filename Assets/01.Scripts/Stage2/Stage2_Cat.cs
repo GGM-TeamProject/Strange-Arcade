@@ -84,6 +84,7 @@ public class Stage2_Cat : MonoBehaviour, IDamage
 
     private void OnPlayerDie(UnityEvent CallBack){
         Debug.Log("주금");
+        GameManager.Instance.ChallengeManager.CheckClear("FirstDeath_S2");
         _catState = CatState.Die;
         StartCoroutine(PlayerDieCoroutine(CallBack));
     }

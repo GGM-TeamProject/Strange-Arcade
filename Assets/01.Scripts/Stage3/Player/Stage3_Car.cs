@@ -164,6 +164,7 @@ public class Stage3_Car : MonoBehaviour, IDamage
 
     private void OnPlayerDie(UnityEvent CallBack){
         Debug.Log("주금");
+        GameManager.Instance.ChallengeManager.CheckClear("FirstDeath_S3");
         _playerState = CarState.Die;
         StartCoroutine(PlayerDieCoroutine(CallBack));
     }

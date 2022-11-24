@@ -17,7 +17,7 @@ public class ChallengeManager : MonoBehaviour
     // 7 - AllClear
 
     private void Start() {
-        //CheckClear("FirstGame");
+        CheckClear("FirstGame");
 
         for(int i = 0; i < _trophies.Count; i++){
             _trophies[i].achiveMission(DataManager.Instance.User.clearChallenge[i]);
@@ -25,6 +25,7 @@ public class ChallengeManager : MonoBehaviour
     }
 
     private void Update() {
+        //test Key
         if(Input.GetKeyDown(KeyCode.Alpha1)) CheckClear("FirstGame");
         if(Input.GetKeyDown(KeyCode.Alpha2)) CheckClear("Clear_S1");
         if(Input.GetKeyDown(KeyCode.Alpha3)) CheckClear("Clear_S2");
@@ -32,7 +33,8 @@ public class ChallengeManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha5)) CheckClear("FirstDeath_S1");
         if(Input.GetKeyDown(KeyCode.Alpha6)) CheckClear("FirstDeath_S2");
         if(Input.GetKeyDown(KeyCode.Alpha7)) CheckClear("FirstDeath_S3");
-        if(Input.GetKeyDown(KeyCode.Alpha8)) CheckClear("AllClear");
+
+        CheckClear("AllClear");
     }
 
     public void CheckClear(string challengeName){

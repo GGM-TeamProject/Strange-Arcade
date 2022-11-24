@@ -69,6 +69,7 @@ public class Stage2_UI : Timer
 
     protected override IEnumerator StageClearCoroutine()
     {
+        GameManager.Instance.ChallengeManager.CheckClear("Clear_S2");
         yield return new WaitForSeconds(0.5f);
         GameManager.Instance.UIManager.OnGameClearPanel(false);
 

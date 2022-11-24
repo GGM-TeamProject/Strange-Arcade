@@ -215,6 +215,7 @@ public class Player_Stage1 : MonoBehaviour
         }
 
         if(other.transform.CompareTag("Cat") && _playerEnum != PlayerEnum.Die){
+            GameManager.Instance.ChallengeManager.CheckClear("Clear_S1");
             StartCoroutine(StageClearCoroutine());
         }
     }

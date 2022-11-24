@@ -47,6 +47,7 @@ public class Timer : MonoBehaviour
     }
 
     protected virtual IEnumerator StageClearCoroutine(){
+        GameManager.Instance.ChallengeManager.CheckClear("Clear_S3");
         yield return new WaitForSeconds(0.5f);
         GameManager.Instance.UIManager.OnGameClearPanel(true);
 

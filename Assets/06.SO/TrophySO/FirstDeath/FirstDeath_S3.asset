@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a68679a0c1c5304da4e7d7ed1a3d184, type: 3}
   m_Name: FirstDeath_S3
   m_EditorClassIdentifier: 
-  index: 7
-  unLocked: {fileID: 21300000, guid: 4c012e9502eb1694f8c533ce7f72bc71, type: 3}
-  locked: {fileID: 21300000, guid: e2da3de46de3a3648906eef5f6db479e, type: 3}
-  challegeName: "\uBBF8\uAC1C\uD55C \uC778\uAC04 \uB530\uC704\uAC00 \n\uC6B0\uB9B4
-    \uC774\uAE38 \uC21C \uC5C6\uC9C0"
+  index: 6
+  unLocked: {fileID: 21300000, guid: 5f57f3f82ea1dfb419a8825722e8bef0, type: 3}
+  locked: {fileID: 21300000, guid: 1d6a64b214412104197a30d533aec854, type: 3}
+  challegeName: "\uD2B8\uB7ED \uB864\uB7EC\uB2E4\u314F\u314F\u314F"
   explanation: "\uC138 \uBC88\uC9F8 \uC2A4\uD14C\uC774\uC9C0\uC5D0\uC11C \uCC98\uC74C\uC73C\uB85C
     \uD0C8\uB77D\uD558\uC138\uC694."

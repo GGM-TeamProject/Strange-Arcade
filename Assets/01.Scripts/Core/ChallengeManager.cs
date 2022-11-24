@@ -11,12 +11,10 @@ public class ChallengeManager : MonoBehaviour
     // 1 - Clear_S1
     // 2 - Clear_S2
     // 3 - Clear_S3
-    // 4 - Clear_S4
-    // 5 - FirstDeath_S1
-    // 6 - FirstDeath_S2
-    // 7 - FirstDeath_S3
-    // 8 - FirstDeath_S4
-    // 9 - AllClear
+    // 4 - FirstDeath_S1
+    // 5 - FirstDeath_S2
+    // 6 - FirstDeath_S3
+    // 7 - AllClear
 
     private void Start() {
         //CheckClear("FirstGame");
@@ -29,6 +27,12 @@ public class ChallengeManager : MonoBehaviour
     private void Update() {
         if(Input.GetKeyDown(KeyCode.Alpha1)) CheckClear("FirstGame");
         if(Input.GetKeyDown(KeyCode.Alpha2)) CheckClear("Clear_S1");
+        if(Input.GetKeyDown(KeyCode.Alpha3)) CheckClear("Clear_S2");
+        if(Input.GetKeyDown(KeyCode.Alpha4)) CheckClear("Clear_S3");
+        if(Input.GetKeyDown(KeyCode.Alpha5)) CheckClear("FirstDeath_S1");
+        if(Input.GetKeyDown(KeyCode.Alpha6)) CheckClear("FirstDeath_S2");
+        if(Input.GetKeyDown(KeyCode.Alpha7)) CheckClear("FirstDeath_S3");
+        if(Input.GetKeyDown(KeyCode.Alpha8)) CheckClear("AllClear");
     }
 
     public void CheckClear(string challengeName){
@@ -47,23 +51,17 @@ public class ChallengeManager : MonoBehaviour
             case "Clear_S3":
                 index = 3;
                 break;
-            case "Clear_S4":
+            case "FirstDeath_S1":
                 index = 4;
                 break;
-            case "FirstDeath_S1":
+            case "FirstDeath_S2":
                 index = 5;
                 break;
-            case "FirstDeath_S2":
+            case "FirstDeath_S3":
                 index = 6;
                 break;
-            case "FirstDeath_S3":
-                index = 7;
-                break;
-            case "FirstDeath_S4":
-                index = 8;
-                break;
             case "AllClear":
-                index = 9;
+                index = 7;
                 break;
         }
 

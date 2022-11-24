@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a68679a0c1c5304da4e7d7ed1a3d184, type: 3}
   m_Name: AllClear
   m_EditorClassIdentifier: 
-  index: 9
+  index: 7
   unLocked: {fileID: 21300000, guid: 3d1678856d8c683499fb1a2ac6f60097, type: 3}
-  locked: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  locked: {fileID: 21300000, guid: b24baa930edf21549addd29e8bb7a342, type: 3}
   challegeName: "[\uACE0\uC591\uC774] \uADF8 \uC7A1\uCC44"
   explanation: "\uBAA8\uB4E0 \uB3C4\uC804\uACFC\uC81C\uB97C \uD074\uB9AC\uC5B4 \uD558\uC138\uC694."

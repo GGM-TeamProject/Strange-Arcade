@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a68679a0c1c5304da4e7d7ed1a3d184, type: 3}
   m_Name: FirstDeath_S1
   m_EditorClassIdentifier: 
-  index: 5
+  index: 4
   unLocked: {fileID: 21300000, guid: 7462d47ae2b80e24e8073752141e5857, type: 3}
   locked: {fileID: 21300000, guid: f5d796fe67dac7e4aa93bf6d170d612c, type: 3}
   challegeName: "\uC544\uC774 \uB530\uB73B\uD574"

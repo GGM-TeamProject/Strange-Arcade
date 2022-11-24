@@ -11,18 +11,9 @@ public class RollObject : MonoBehaviour
     private bool _isRoll = false;
     public bool IsRoll => _isRoll;
 
-    private Stage2_Cat _cat;
-    private Transform _rollObjectParent;
+    [SerializeField] private Stage2_Cat _cat;
+    [SerializeField] private Transform _rollObjectParent;
     private Queue<Vector3> _bulletVelocitys = new Queue<Vector3>();
-
-    private void Awake() {
-        _cat = transform.parent.Find("Cat").GetComponent<Stage2_Cat>();
-        _rollObjectParent = GameObject.Find("Screen/Stages/Stage_2/RollObjects").transform;
-    }
-
-    private void Start() {
-        Init();
-    }
 
     public void Init(){
         _rollCoolTime = 30f;

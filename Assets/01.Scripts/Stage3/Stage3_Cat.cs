@@ -11,16 +11,8 @@ public class Stage3_Cat : MonoBehaviour
 
     private bool _isSpawnItem = false;
     //private Animator _anim;
-    private Stage3_Car _player;
+    [SerializeField] private Stage3_Car _player;
     private Vector3 _moveDir = Vector3.right;
-
-    private void OnEnable() {
-        _player = transform.parent.Find("PlayerCar").GetComponent<Stage3_Car>();
-    }
-
-    private void Start() {
-        StartCoroutine(UpdatePath());
-    }
 
     public void Init(){
         StartCoroutine(UpdatePath());

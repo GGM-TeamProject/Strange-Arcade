@@ -17,10 +17,6 @@ public class Player_Stage2 : MonoBehaviour
         _cat = transform.parent.Find("Cat").GetComponent<Stage2_Cat>();
     }
 
-    private void Start() {
-        SkillReset();
-    }
-
     private void Update() {
         UseSkill();
     }

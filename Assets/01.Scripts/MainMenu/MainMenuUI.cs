@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
+using TMPro;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -26,7 +28,9 @@ public class MainMenuUI : MonoBehaviour
     }
 
     IEnumerator PopUpLevelCoroutine(int stage){
-        //팝업 스크린 수정하기
+        _popUpRectTrm.Find("Image").GetComponent<Image>().sprite = stageSOs[stage - 1].image;
+        _popUpRectTrm.Find("Image/StageInfo").GetComponent<TextMeshProUGUI>().text = stageSOs[stage - 1].InfoTxt;
+
         _levelRectTrm.DOAnchorPos3DX(-256, 0.2f);
         _popUpRectTrm.DOAnchorPos3DX(-284, 0.3f);
 

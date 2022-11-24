@@ -183,7 +183,7 @@ public class Player_Stage1 : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.transform.CompareTag("Platform")){
+        if(other.gameObject.layer == 8){
             if(_playerEnum != PlayerEnum.Hit) _playerEnum = PlayerEnum.Idle;
             _isJump = false;
         }

@@ -6,35 +6,17 @@ public class BulletSpawner : MonoBehaviour
 {
     [SerializeField] private List<Transform> _spawners = new List<Transform>();
 
-    private string[] _attackActions = new string[3];
+    private string[] _attackActions = new string[3] {"SingleAttack", "SectorAttack", "TripleAttack"};
     private int _attackCnt = 0;
 
     private float _spawnDelay = 5f;
     private const float _spawnMinusTime = 30f;
     private float _currentTime = 0f;
-    private RollObject _rollObj;
-    private Stage2_Cat _cat;
+    [SerializeField] private RollObject _rollObj;
+    [SerializeField] private Stage2_Cat _cat;
 
     private bool _canSpawnBullet = true;
     public bool CanSpawnBullet {get => _canSpawnBullet; set => _canSpawnBullet = value;}
-
-    private void Awake() {
-        _cat = transform.parent.parent.Find("Cat").GetComponent<Stage2_Cat>();
-        _rollObj = transform.parent.GetComponent<RollObject>();
-    }
-
-    private void Start() {
-        foreach(Transform t in transform){
-            if(t == transform) return;
-            _spawners.Add(t);
-        }
-
-        _attackActions[0] = "SingleAttack";
-        _attackActions[1] = "SectorAttack";
-        _attackActions[2] = "TripleAttack";
-
-        Init();
-    }   
 
     public void Init(){
         _spawnDelay = 5;

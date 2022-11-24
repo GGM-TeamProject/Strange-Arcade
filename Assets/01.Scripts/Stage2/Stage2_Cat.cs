@@ -34,10 +34,6 @@ public class Stage2_Cat : MonoBehaviour, IDamage
         _spriteRenderer = GetComponent<SpriteRenderer>();   
     }
 
-    private void Start() {
-        Init();
-    }
-
     private void OnEnable() {
         _callBack?.Invoke();
     }

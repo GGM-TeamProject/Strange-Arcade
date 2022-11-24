@@ -11,15 +11,7 @@ public class Timer : MonoBehaviour
     protected int _second = 0;
     protected int _minute = 0;
 
-    protected TextMeshProUGUI _timer;
-
-    protected virtual void OnEnable(){
-        _timer = transform.Find("Timer").GetComponent<TextMeshProUGUI>();
-    }
-
-    protected virtual void Start(){
-        StartCoroutine(TimerPath());
-    }
+    [SerializeField] protected TextMeshProUGUI _timer;
 
     public void InitTimerSet(){
         _timerTime = 180;

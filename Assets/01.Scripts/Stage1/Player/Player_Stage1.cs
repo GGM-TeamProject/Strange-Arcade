@@ -67,7 +67,6 @@ public class Player_Stage1 : MonoBehaviour
     }
 
     private void Start() {
-        InitSetting();
         GaugePopUp(false, 0f);
         GameManager.Instance.CameraManager.CamSetting(transform, false, true, new Vector2(0, 2f));
     }

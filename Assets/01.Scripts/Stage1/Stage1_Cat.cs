@@ -20,10 +20,6 @@ public class Stage1_Cat : MonoBehaviour
         _player = transform.parent.Find("Player").GetComponent<Player_Stage1>();
     }
 
-    private void Start() {
-        Init();
-    }
-
     private void Update() {
         SpawnTimeTimer();
     }
@@ -45,6 +41,7 @@ public class Stage1_Cat : MonoBehaviour
     }
 
     IEnumerator UpdatePath(){
+        yield return new WaitUntil(() => _player is not null);
         while(_player.PlayerEnum != PlayerEnum.Die){
             int randomValue = Random.Range(0, 2);
 

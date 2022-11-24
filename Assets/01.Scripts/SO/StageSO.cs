@@ -7,6 +7,5 @@ using UnityEngine.UI;
 public class StageSO : ScriptableObject
 {
     public Image image;
-    public string beforeTxt;
-    public string afterTxt;
+    public string InfoTxt;
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CursorManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class CursorManager : MonoBehaviour
         Waiting
     }
 
+    [SerializeField] private Camera _cam;
     [field:SerializeField] public MouseState mouseState {get; set;}
 
     private Texture2D _normalCursor;
@@ -24,7 +26,26 @@ public class CursorManager : MonoBehaviour
     }
 
     private void Update() {
+        MouseRay();
         SetMouseCursor();
+    }
+
+    private void MouseRay(){
+        RaycastHit hit = CastRay();
+        mouseState = (hit.collider) ? MouseState.Select : MouseState.Normal;
+    }
+
+    private RaycastHit CastRay(){
+        Vector3 screenMousePosFar = new Vector3(Input.mousePosition.x, Input.mousePosition.y, _cam.farClipPlane);
+        Vector3 screenMousePosNear = new Vector3(Input.mousePosition.x, Input.mousePosition.y, _cam.nearClipPlane);
+        Vector3 worldMousePosFar = _cam.ScreenToWorldPoint(screenMousePosFar);
+        Vector3 worldMousePosNear = _cam.ScreenToWorldPoint(screenMousePosNear);
+
+        RaycastHit hit;
+        Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit, LayerMask.GetMask("MouseTarget"));
+        Debug.DrawLine(worldMousePosNear, worldMousePosFar - worldMousePosNear);
+
+        return hit;
     }
 
     private void SetMouseCursor(){

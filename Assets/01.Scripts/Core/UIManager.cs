@@ -25,6 +25,13 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Image _3DGameOverPanel;
     [SerializeField] private Image _3DGameClearPanel;
+
+    [SerializeField] private Image _trophyInfo;
+    [SerializeField] private Image _trophyImage;
+    [SerializeField] private TextMeshProUGUI _trophyName;
+    [SerializeField] private TextMeshProUGUI _trophyInfoText;
+
+    private bool _isOnChallengePanel = false;
     
     private void Awake() {
         _challengePanel = GameObject.Find("Screen/PublicCanvas/ChallengeClearPanel").GetComponent<RectTransform>();
@@ -34,6 +41,36 @@ public class UIManager : MonoBehaviour
 
     private void Start() {
         _challengePanel.anchoredPosition3D = new Vector3(OUT_POS_X, -5, 0);
+    }
+
+    private void Update() {
+        if(_isOnChallengePanel){
+            if(Input.GetKeyDown(KeyCode.Escape)){
+                OffTrophyInfo();
+            }
+        }
+    }
+
+    private void OffTrophyInfo(){
+        if(!_isOnChallengePanel) return;
+        _isOnChallengePanel = false;
+
+        _trophyInfo.rectTransform.DOScale(0f, 0.3f);
+    }
+
+    public void OnTrophyInfo(TrophySO trophySO){
+        if(_isOnChallengePanel) return;
+
+        _isOnChallengePanel = true;
+
+        _trophyImage.sprite = trophySO.unLocked;
+        _trophyName.text = trophySO.challegeName;
+        _trophyInfoText.text = trophySO.explanation;
+
+        Sequence sq = DOTween.Sequence();
+        sq.Append(_trophyInfo.rectTransform.DOScale(1.3f, 0.2f));
+        sq.Append(_trophyInfo.rectTransform.DOScale(0.9f, 0.1f));
+        sq.Append(_trophyInfo.rectTransform.DOScale(1.2f, 0.1f));
     }
 
     public void OnGameClearPanel(bool is3D){

@@ -13,7 +13,7 @@ public class Timer : MonoBehaviour
 
     protected TextMeshProUGUI _timer;
 
-    protected virtual void Awake(){
+    protected virtual void OnEnable(){
         _timer = transform.Find("Timer").GetComponent<TextMeshProUGUI>();
     }
 

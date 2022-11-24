@@ -7,8 +7,6 @@ public class ChallengeManager : MonoBehaviour
     [SerializeField] private List<Trophy> _trophies;
     public List<Trophy> Trophies {get => _trophies;}
 
-    private bool _isAllClearChallenge = false;
-
     // 0 - FirstGame
     // 1 - Clear_S1
     // 2 - Clear_S2

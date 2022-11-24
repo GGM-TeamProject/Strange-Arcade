@@ -15,12 +15,12 @@ public class Stage2_UI : Timer
     private Player_Stage2 _player;
     private Stage2_Cat _cat;
 
-    protected override void Awake()
+    protected override void OnEnable()
     {
         _hpParent = transform.Find("CatHp");
         _player = transform.parent.Find("Player").GetComponent<Player_Stage2>();
         _cat = transform.parent.Find("Cat").GetComponent<Stage2_Cat>();
-        base.Awake();
+        base.OnEnable();
     }
 
     protected override void Start() {

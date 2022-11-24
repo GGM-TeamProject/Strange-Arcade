@@ -7,6 +7,8 @@ public class ChallengeManager : MonoBehaviour
     [SerializeField] private List<Trophy> _trophies;
     public List<Trophy> Trophies {get => _trophies;}
 
+    private bool _isAllClearChallenge = false;
+
     // 0 - FirstGame
     // 1 - Clear_S1
     // 2 - Clear_S2
@@ -34,7 +36,17 @@ public class ChallengeManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha6)) CheckClear("FirstDeath_S2");
         if(Input.GetKeyDown(KeyCode.Alpha7)) CheckClear("FirstDeath_S3");
 
-        CheckClear("AllClear");
+
+        if(AllClearCheak(DataManager.Instance.User.clearChallenge)) CheckClear("AllClear");
+    }
+
+    private bool AllClearCheak(bool[] arr){
+        int trueCnt = 0;
+        foreach(bool b in arr){
+            if(b == true) trueCnt++;
+        }
+        
+        return trueCnt == _trophies.Count - 1;
     }
 
     public void CheckClear(string challengeName){

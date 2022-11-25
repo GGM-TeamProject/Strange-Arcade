@@ -66,11 +66,6 @@ public class Player_Stage1 : MonoBehaviour
         _playerHitAnimation = transform.Find("PlayerHitAnimation").GetComponent<Animator>();
     }
 
-    private void Start() {
-        GaugePopUp(false, 0f);
-        GameManager.Instance.CameraManager.CamSetting(transform, false, true, new Vector2(0, 2f));
-    }
-
     private void Update() {
         if(_playerEnum == PlayerEnum.Die) return;
 
@@ -84,6 +79,7 @@ public class Player_Stage1 : MonoBehaviour
     }
 
     private void OnEnable() {
+        GameManager.Instance.CameraManager.CamSetting(transform, false, true, new Vector2(0, 2f));
         _playerDieAction?.Invoke();
     }
 

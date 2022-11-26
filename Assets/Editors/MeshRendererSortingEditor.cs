@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEditor;
 using System.Linq;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(MeshRenderer))]
 public class MeshRendererSortingEditor : Editor
 {
 
-    #if UNITY_EDITOR
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
@@ -45,5 +45,5 @@ public class MeshRendererSortingEditor : Editor
         var newLayerValue = EditorGUILayout.Popup("Sorting Layer", layerValue, names);
         return layers[newLayerValue].id;
     }
-    #endif
 }
+#endif

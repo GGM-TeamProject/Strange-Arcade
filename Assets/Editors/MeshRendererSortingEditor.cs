@@ -6,6 +6,7 @@ using System.Linq;
 public class MeshRendererSortingEditor : Editor
 {
 
+    #if UNITY_EDITOR
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
@@ -44,4 +45,5 @@ public class MeshRendererSortingEditor : Editor
         var newLayerValue = EditorGUILayout.Popup("Sorting Layer", layerValue, names);
         return layers[newLayerValue].id;
     }
+    #endif
 }

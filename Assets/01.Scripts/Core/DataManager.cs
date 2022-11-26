@@ -57,6 +57,7 @@ public class DataManager : MonoSingleton<DataManager>
 
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(DataManager))]
 public class DataEditor : Editor{
     public override void OnInspectorGUI()
@@ -73,3 +74,4 @@ public class DataEditor : Editor{
         }
     }
 }
+#endif

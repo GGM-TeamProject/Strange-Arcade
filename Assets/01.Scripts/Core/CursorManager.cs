@@ -32,7 +32,7 @@ public class CursorManager : MonoBehaviour
 
     private void MouseRay(){
         RaycastHit hit = CastRay();
-        mouseState = (hit.collider) ? MouseState.Select : MouseState.Normal;
+        if(hit.collider) mouseState = MouseState.Select;
     }
 
     private RaycastHit CastRay(){

@@ -39,6 +39,7 @@ public class SceneTransManager : MonoSingleton<SceneTransManager>
     IEnumerator SceneChangeCoroutine(string sceneName){
         _isChangeScene = true;
         SetCameraRenderer(1);
+        GameManager.Instance.CursorManager.mouseState = CursorManager.MouseState.Waiting;
 
         while(_passSetting.screenHeight >= 20){
             _passSetting.screenHeight -= 1;
@@ -58,6 +59,7 @@ public class SceneTransManager : MonoSingleton<SceneTransManager>
         }
 
         SetCameraRenderer(0);
+        GameManager.Instance.CursorManager.mouseState = CursorManager.MouseState.Normal;
         _isChangeScene = false;
     }
 

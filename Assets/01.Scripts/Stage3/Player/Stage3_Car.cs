@@ -184,12 +184,10 @@ public class Stage3_Car : MonoBehaviour, IDamage
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Item")){
+        if(other.CompareTag("Item") && _playerState != CarState.GodMode){
             Item item = other.transform.GetComponent<Item>();
-            if(_playerState != CarState.GodMode){
-                item?.OnUseItem();
-                OnDamage(1f);
-            }
+            item?.OnUseItem();
+            OnDamage(1f);
 
             PoolManager.Instance.Push(other.gameObject);
             GameObject impactParticle = PoolManager.Instance.Pop("ImpactParticle");

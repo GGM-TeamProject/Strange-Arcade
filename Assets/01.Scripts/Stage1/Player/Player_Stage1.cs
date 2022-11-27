@@ -39,9 +39,9 @@ public class Player_Stage1 : MonoBehaviour
     [SerializeField] private PlayerEnum _playerEnum = PlayerEnum.Idle;
     public PlayerEnum PlayerEnum {get => _playerEnum; set => _playerEnum = value;}
 
+    [Header("PlayerSound")]
     [SerializeField] private AudioClip _playerJumpSound;
     [SerializeField] private AudioClip _hitSound;
-
 
     private Rigidbody2D _rigid;
     private Animator _anim;

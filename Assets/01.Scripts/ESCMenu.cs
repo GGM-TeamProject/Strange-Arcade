@@ -29,6 +29,10 @@ public class ESCMenu : ButtonSelect
     }
 
     private void Update() {
+        GameManager.Instance.SoundManager.VolumeSet("MASTER", _masterSlider.value);
+        GameManager.Instance.SoundManager.VolumeSet("BGM", _bgmSlider.value);
+        GameManager.Instance.SoundManager.VolumeSet("SFX", _sfxSlider.value);
+        
         if(_mainMenuObj.activeSelf || _gameClearPanel.activeSelf || _gameClearPanel.activeSelf) return;
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(_isAudioSetting){
@@ -55,12 +59,6 @@ public class ESCMenu : ButtonSelect
                     ExitToMain();
                     break;
             }
-        }
-
-        if(_isAudioSetting){
-            GameManager.Instance.SoundManager.VolumeSet("MASTER", _masterSlider.value);
-            GameManager.Instance.SoundManager.VolumeSet("BGM", _bgmSlider.value);
-            GameManager.Instance.SoundManager.VolumeSet("SFX", _sfxSlider.value);
         }
     }
 

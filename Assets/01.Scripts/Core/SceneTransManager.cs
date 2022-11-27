@@ -10,6 +10,11 @@ public class SceneTransManager : MonoSingleton<SceneTransManager>
     [SerializeField] private UniversalRendererData _pixelizeData;
     [SerializeField] private PixelizeFeature.CustomPassSetting _passSetting;
 
+    [SerializeField] private AudioClip _mainMenuBGM;
+    [SerializeField] private AudioClip _stage1BGM;
+    [SerializeField] private AudioClip _stage2BGM;
+    [SerializeField] private AudioClip _stage3BGM;
+
     private bool _isChangeScene = false;
 
     private PixelizeFeature _pixelizeFeature;
@@ -59,6 +64,20 @@ public class SceneTransManager : MonoSingleton<SceneTransManager>
         }
 
         SetCameraRenderer(0);
+        switch(sceneName){
+            case "MainMenu":
+                GameManager.Instance.SoundManager.BGMSetting(_mainMenuBGM);
+                break;
+            case "Stage1":
+                GameManager.Instance.SoundManager.BGMSetting(_stage1BGM);
+                break;
+            case "Stage2":
+                GameManager.Instance.SoundManager.BGMSetting(_stage2BGM);
+                break;
+            case "Stage3":
+                GameManager.Instance.SoundManager.BGMSetting(_stage3BGM);
+                break;
+        }
         GameManager.Instance.CursorManager.mouseState = CursorManager.MouseState.Normal;
         _isChangeScene = false;
     }

@@ -9,6 +9,7 @@ public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private List<StageSO> stageSOs;
     [SerializeField] private AudioClip _stageStartSound;
+    [SerializeField] private AudioClip _mainMenuBGM;
 
     private bool _isSelected = false;
     public bool IsSelected {get => _isSelected; set => _isSelected = value;}
@@ -20,6 +21,10 @@ public class MainMenuUI : MonoBehaviour
         _levelRectTrm = transform.Find("LevelSelect").GetComponent<RectTransform>();
         _popUpRectTrm = transform.Find("LevelPopUp").GetComponent<RectTransform>();
     } 
+
+    private void OnEnable() {
+        GameManager.Instance.SoundManager.BGMSetting(_mainMenuBGM);
+    }
 
     public void PopUpLevelPanel(int stage){
         if(!_isSelected){

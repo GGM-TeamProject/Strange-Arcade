@@ -1873,7 +1873,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.373
+  m_Value: 0.775
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4520,6 +4520,7 @@ GameObject:
   - component: {fileID: 540962115}
   - component: {fileID: 540962117}
   - component: {fileID: 540962116}
+  - component: {fileID: 540962118}
   m_Layer: 0
   m_Name: WarningTxt
   m_TagString: Untagged
@@ -4644,6 +4645,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 540962114}
   m_CullTransparentMesh: 1
+--- !u!114 &540962118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540962114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30f06f954af29d547b8fb50b0f8668bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _warningLaveSound: {fileID: 8300000, guid: fa637827fe19b8d408c6dde10916b2ba, type: 3}
+  _stage1BGM: {fileID: 8300000, guid: 559c232a43caebe41870ce54786f604e, type: 3}
 --- !u!4 &551834985 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 439608, guid: d9c2a6cb99ea45945b24d88f8b8e88ff, type: 3}
@@ -6218,6 +6233,10 @@ MonoBehaviour:
   _passSetting:
     renderPassEvent: 550
     screenHeight: 100
+  _mainMenuBGM: {fileID: 8300000, guid: 06906d718be5b6a4cb2df8732bf39832, type: 3}
+  _stage1BGM: {fileID: 8300000, guid: 559c232a43caebe41870ce54786f604e, type: 3}
+  _stage2BGM: {fileID: 8300000, guid: 51a4f1157b7ff1449b5e5cf064d584c7, type: 3}
+  _stage3BGM: {fileID: 8300000, guid: 89f935015cc98724a862a586326fdf21, type: 3}
 --- !u!4 &761881749 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1837123149075488319, guid: b92daf503c7482549973247612660aef, type: 3}
@@ -8068,6 +8087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHP: 5
+  _dieSound: {fileID: 8300000, guid: 75f7c252a2b48784f85bb8656f8ed12b, type: 3}
 --- !u!114 &867637764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9795,7 +9815,6 @@ GameObject:
   - component: {fileID: 1128657191}
   - component: {fileID: 1128657192}
   - component: {fileID: 1128657193}
-  - component: {fileID: 1128657194}
   m_Layer: 0
   m_Name: Lava
   m_TagString: Lava
@@ -9857,23 +9876,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2db3f1816526447803d30e393ce30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lavaMoveSpeed: 0.3
+  _lavaMoveSpeed: 0.5
   _initPos: {x: 0, y: -35, z: 0}
   _warningTxt: {fileID: 540962116}
---- !u!114 &1128657194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1128657190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30f06f954af29d547b8fb50b0f8668bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _warningLaveSound: {fileID: 8300000, guid: fa637827fe19b8d408c6dde10916b2ba, type: 3}
-  _stage1BGM: {fileID: 0}
 --- !u!1 &1141439965
 GameObject:
   m_ObjectHideFlags: 0
@@ -12430,6 +12435,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0e8eb2e75f8b9e94db46c14fd07669fd, type: 2}
   - {fileID: 11400000, guid: bc40bc257761a1549895e4cbc1c3b058, type: 2}
   _stageStartSound: {fileID: 8300000, guid: fb4fcad137c7ec248bafec3625395ec2, type: 3}
+  _mainMenuBGM: {fileID: 8300000, guid: 06906d718be5b6a4cb2df8732bf39832, type: 3}
 --- !u!1 &1399343468
 GameObject:
   m_ObjectHideFlags: 0
@@ -12872,8 +12878,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _masterMixer: {fileID: 24100000, guid: 6bebc6f6e45c667459fc32e1cfd6b515, type: 2}
-  _bgmSource: {fileID: 0}
-  _sfxSource: {fileID: 0}
+  _bgmSource: {fileID: 1050975674}
+  _sfxSource: {fileID: 1075372605}
 --- !u!1 &1418490814
 GameObject:
   m_ObjectHideFlags: 0
@@ -14528,7 +14534,8 @@ MonoBehaviour:
   _challengeClearSound: {fileID: 8300000, guid: dcfa0b3e1fe5f2f45bdbdd2ea0f90947, type: 3}
   _gameClearSound: {fileID: 8300000, guid: 3c53da5e777319043bb6afc1b2f58f6a, type: 3}
   _gameOverSound: {fileID: 8300000, guid: 8f117adf721dbd84aa211fc91c73e9da, type: 3}
-  _AllClearSound: {fileID: 8300000, guid: 94e69e0614d20ea46afe4e93a08d5c47, type: 3}
+  _allClearSound: {fileID: 8300000, guid: 94e69e0614d20ea46afe4e93a08d5c47, type: 3}
+  _uiPopUpSound: {fileID: 8300000, guid: 168132364f3d4a342ba96eb8fdf2c4f8, type: 3}
 --- !u!1 &1600285136
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Player_Stage1_PlayerHP : MonoBehaviour, IDamage
 {
     [SerializeField] private float _maxHP = 5;
+    [SerializeField] private AudioClip _dieSound;
 
     private float _currentHP;
     private ParticleSystem _playerDieParticle;
@@ -28,6 +29,7 @@ public class Player_Stage1_PlayerHP : MonoBehaviour, IDamage
 
     private void OnPlayerDie(UnityEvent CallBack){
         Debug.Log("주금");
+        GameManager.Instance.SoundManager.PlayerOneShot(_dieSound);
         GameManager.Instance.ChallengeManager.CheckClear("FirstDeath_S1");
         _playerDieParticle.Play();
         StartCoroutine(PlayerDieCoroutine(CallBack));

@@ -34,7 +34,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private AudioClip _challengeClearSound;
     [SerializeField] private AudioClip _gameClearSound;
     [SerializeField] private AudioClip _gameOverSound;
-    [SerializeField] private AudioClip _AllClearSound;
+    [SerializeField] private AudioClip _allClearSound;
+    [SerializeField] private AudioClip _uiPopUpSound;
 
     private bool _isOnChallengePanel = false;
     
@@ -66,6 +67,7 @@ public class UIManager : MonoBehaviour
     public void OnTrophyInfo(TrophySO trophySO){
         if(_isOnChallengePanel) return;
 
+        GameManager.Instance.SoundManager.PlayerOneShot(_uiPopUpSound);
         _isOnChallengePanel = true;
 
         _trophyImage.sprite = trophySO.unLocked;
@@ -113,7 +115,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void PopUpChallengePanel(string challengeName, Sprite challengeSprite){
-        GameManager.Instance.SoundManager.PlayerOneShot((challengeName == "[고양이] 그 잡채") ? _AllClearSound : _challengeClearSound);
+        GameManager.Instance.SoundManager.PlayerOneShot((challengeName == "[고양이] 그 잡채") ? _allClearSound : _challengeClearSound);
         StartCoroutine(PopUpChallengeCoroutine(challengeName, challengeSprite));
     }
 

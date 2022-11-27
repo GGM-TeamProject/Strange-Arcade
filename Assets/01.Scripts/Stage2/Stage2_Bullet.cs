@@ -5,6 +5,7 @@ using UnityEngine;
 public class Stage2_Bullet : MonoBehaviour
 {
     [SerializeField] private float _speed = 5f;
+    [SerializeField] private AudioClip _bounceSound;
 
     private Rigidbody2D _rigid;
     private RollObject _rollObj;
@@ -42,6 +43,7 @@ public class Stage2_Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         //이거 물어보기
         if(other.transform.CompareTag("Player") || other.transform.CompareTag("Border")){
+            GameManager.Instance.SoundManager.PlayerOneShot(_bounceSound);
             _destroyCnt--;
             if(_destroyCnt <= 0){
                 OnKill();

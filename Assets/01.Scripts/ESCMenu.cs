@@ -11,17 +11,25 @@ public class ESCMenu : ButtonSelect
     [SerializeField] private RectTransform _escPanel;
     [SerializeField] private RectTransform _audioSliderPanel;
 
+    [SerializeField] private Slider _masterSlider;
+    [SerializeField] private Slider _bgmSlider;
+    [SerializeField] private Slider _sfxSlider;
+
     [SerializeField] private bool _isEsc = false;
     [SerializeField] private bool _isAudioSetting = false;
 
     private GameObject _mainMenuObj = null;
+    private GameObject _gameClearPanel = null;
+    private GameObject _gameOverPanel = null;
 
     private void Awake() {
         _mainMenuObj = transform.parent.parent.Find("Menu").gameObject;
+        _gameOverPanel = transform.parent.Find("GameOver").gameObject;
+        _gameClearPanel = transform.parent.Find("GameClear").gameObject;
     }
 
     private void Update() {
-        if(_mainMenuObj.activeSelf) return;
+        if(_mainMenuObj.activeSelf || _gameClearPanel.activeSelf || _gameClearPanel.activeSelf) return;
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(_isAudioSetting){
                 _isAudioSetting = false;
@@ -47,6 +55,12 @@ public class ESCMenu : ButtonSelect
                     ExitToMain();
                     break;
             }
+        }
+
+        if(_isAudioSetting){
+            GameManager.Instance.SoundManager.VolumeSet("MASTER", _masterSlider.value);
+            GameManager.Instance.SoundManager.VolumeSet("BGM", _bgmSlider.value);
+            GameManager.Instance.SoundManager.VolumeSet("SFX", _sfxSlider.value);
         }
     }
 

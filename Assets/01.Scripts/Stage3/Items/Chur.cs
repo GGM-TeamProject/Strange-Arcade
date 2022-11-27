@@ -18,6 +18,5 @@ public class Chur : Item
     {
         if(GameManager.Instance.ItemManager.AttackRoutineIsRunning) return;
         GameManager.Instance.ItemManager.ChurMehod(_churBombs);
-        PoolManager.Instance.Push(gameObject);
     }
 }

@@ -42,6 +42,7 @@ public class BulletSpawner : MonoBehaviour
     }
 
     IEnumerator SpawnBullet(){
+        yield return new WaitForSeconds(2f);
         while(_cat.CatState != CatState.Die){
             if(!_rollObj.IsRoll && _canSpawnBullet){
                 int currentAttack = Random.Range(0, _attackActions.Length);

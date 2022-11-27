@@ -52,7 +52,7 @@ public class Stage2_Cat : MonoBehaviour, IDamage
 
     IEnumerator Move(){
         while(_catState != CatState.Die){
-            float spawnTime = Random.Range(3f, 5f);
+            float spawnTime = Random.Range(5f, 10f);
             yield return new WaitForSeconds(spawnTime);
             Vector2 spawnPos = new Vector2(Random.Range(_stageData.minPos.x, _stageData.maxPos.x),
                 Random.Range(_stageData.minPos.y, _stageData.maxPos.y));

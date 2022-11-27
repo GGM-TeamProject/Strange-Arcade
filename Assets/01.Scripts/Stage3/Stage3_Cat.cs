@@ -7,7 +7,7 @@ public class Stage3_Cat : MonoBehaviour
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _moveMinValue = 0f;
     [SerializeField] private float _moveMaxValue = 0f;
-    [SerializeField] private float _sapwnDelay = 3f;
+    [SerializeField] private float _spawnDelay = 3f;
     [SerializeField] private Stage3_Car _player;
 
     private bool _isSpawnItem = false;
@@ -18,6 +18,7 @@ public class Stage3_Cat : MonoBehaviour
     public void Init(){
         _model = transform.Find("Model");
         _anim = _model.GetComponent<Animator>();
+        StopAllCoroutines();
         StartCoroutine(UpdatePath());
     }
 
@@ -38,7 +39,8 @@ public class Stage3_Cat : MonoBehaviour
     IEnumerator UpdatePath(){
         while(_player.PlayerState != CarState.Die){
             int randPercentage = Random.Range(1, 5);
-            yield return new WaitForSeconds(_sapwnDelay);
+            _spawnDelay = Mathf.Lerp(3, 1, _player.PlayerSpeed / 100);
+            yield return new WaitForSeconds(_spawnDelay);
 
             _isSpawnItem = true;
             _anim.SetTrigger("IsThrow");

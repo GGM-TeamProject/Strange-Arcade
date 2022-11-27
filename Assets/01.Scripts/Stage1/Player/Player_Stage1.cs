@@ -186,6 +186,7 @@ public class Player_Stage1 : MonoBehaviour
 
         if(other.transform.CompareTag("Enemy")){
             _playerEnum = PlayerEnum.Hit;
+            _rigid.velocity = Vector2.zero;
 
             StopCoroutine(PlayerStun(_stunTime));
             StartCoroutine(PlayerStun(_stunTime));

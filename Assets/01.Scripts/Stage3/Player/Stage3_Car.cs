@@ -52,7 +52,7 @@ public class Stage3_Car : MonoBehaviour, IDamage
     private TextMeshProUGUI _speedText;
     private MeshRenderer _carMainMesh;
 
-    public float PlayerSpeed => _speed;
+    public float PlayerSpeed { get => _speed; set => _speed = value; }
     public CarState PlayerState => _playerState;
     public bool IsDash => _isDash;
 
@@ -74,6 +74,8 @@ public class Stage3_Car : MonoBehaviour, IDamage
     public void Init(){
         _currentHP = _maxHP;
         _playerState = CarState.Idle;
+        _dashGauge = 0;
+        _currentTime = 0;
         _speed = 0;
     }
 
@@ -153,7 +155,6 @@ public class Stage3_Car : MonoBehaviour, IDamage
     {
         if(_playerState == CarState.GodMode) return;
         _currentHP--;
-        _speed /= 2.3f;
         if(_currentHP <= 0){
             OnPlayerDie(_callBack);
         }
@@ -182,9 +183,18 @@ public class Stage3_Car : MonoBehaviour, IDamage
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Item")){
             Item item = other.transform.GetComponent<Item>();
-            if(_playerState != CarState.GodMode) item?.OnUseItem();
+            if(_playerState != CarState.GodMode){
+                item?.OnUseItem();
+                OnDamage(1f);
+            }
+
+            PoolManager.Instance.Push(other.gameObject);
             GameObject impactParticle = PoolManager.Instance.Pop("ImpactParticle");
             impactParticle.transform.position = other.transform.position;
         }
+    }
+
+    private void OnDisable() {
+        _speedLine.Stop();
     }
 }

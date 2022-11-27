@@ -23,7 +23,7 @@ public class Timer : MonoBehaviour
             if(_timerTime == 60) _timer.DOColor(Color.red, 60f);
             Second2MinSec(_timerTime, out _minute, out _second);
             _timer.text = $"{_minute.ToString("D2")}:{_second.ToString("D2")}";
-            yield return new WaitForSecondsRealtime(1f);
+            yield return new WaitForSeconds(1f);
             --_timerTime;
         }
         StartCoroutine(StageClearCoroutine());

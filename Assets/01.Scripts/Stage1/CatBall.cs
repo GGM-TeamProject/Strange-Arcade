@@ -13,7 +13,7 @@ public class CatBall : MonoBehaviour
     }
 
     private void Update() {
-        if(_player.PlayerEnum == PlayerEnum.Die || _rigid.velocity == Vector2.zero) PoolManager.Instance.Push(gameObject);
+        if(!_player.gameObject.activeSelf || _rigid.velocity == Vector2.zero) PoolManager.Instance.Push(gameObject);
     }
 
     public void Movement(Vector3 direct, float power){

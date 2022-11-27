@@ -9,6 +9,7 @@ public class Stage2_UI : Timer
 {
     [SerializeField] private Image[] _skillIcons;
     [SerializeField] private Transform _hpParent = null;
+    [SerializeField] private Image _skillInfoPanel;
 
     private Stack<Image> _catHp = new Stack<Image>();
 
@@ -19,6 +20,8 @@ public class Stage2_UI : Timer
     {
         _player = transform.parent.Find("Player").GetComponent<Player_Stage2>();
         _cat = transform.parent.Find("Cat").GetComponent<Stage2_Cat>();
+
+        StartCoroutine(InfoCoroutine());
     }
 
     public void Init(){
@@ -37,6 +40,18 @@ public class Stage2_UI : Timer
 
     public void HpDownUI(int count){
         StartCoroutine(HpDownCoroutine(count));
+    }
+
+    IEnumerator InfoCoroutine(){
+        yield return new WaitForSeconds(1.8f);
+        _skillInfoPanel.gameObject.SetActive(true);
+        Time.timeScale = 0;
+        _skillInfoPanel.DOFade(0.6f, 0.5f).SetUpdate(true);
+        yield return new WaitUntil(() => Input.anyKeyDown);
+        _skillInfoPanel.DOFade(0f, 0.5f).SetUpdate(true);
+        Time.timeScale = 1;
+        yield return new WaitForSeconds(0.1f);
+        _skillInfoPanel.gameObject.SetActive(false);
     }
 
     IEnumerator HpDownCoroutine(int count){

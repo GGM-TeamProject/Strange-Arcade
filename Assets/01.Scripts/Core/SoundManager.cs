@@ -20,6 +20,6 @@ public class SoundManager : MonoBehaviour
     public void BGMSetting(AudioClip Clip){
         _bgmSource.clip = Clip;
         _bgmSource.Stop();
-        _bgmSource.Play();
+        if(!_bgmSource.isPlaying) _bgmSource.Play();
     }
 }

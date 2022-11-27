@@ -111,3 +111,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
+  _itemSound: {fileID: 8300000, guid: 57d4cd674cf0bbe4eb418d736e6bd1b9, type: 3}

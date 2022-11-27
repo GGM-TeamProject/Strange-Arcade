@@ -7,6 +7,7 @@ using DG.Tweening;
 public class Timer : MonoBehaviour
 {
     [SerializeField] protected int _timerTime;
+    [SerializeField] protected AudioClip _timerWarningClip;
 
     protected int _second = 0;
     protected int _minute = 0;
@@ -20,7 +21,10 @@ public class Timer : MonoBehaviour
 
     protected virtual IEnumerator TimerPath(){
         while(_timerTime >= 0){
-            if(_timerTime == 60) _timer.DOColor(Color.red, 60f);
+            if(_timerTime == 60){
+                _timer.DOColor(Color.red, 60f);
+                GameManager.Instance.SoundManager.BGMSetting(_timerWarningClip);
+            }
             Second2MinSec(_timerTime, out _minute, out _second);
             _timer.text = $"{_minute.ToString("D2")}:{_second.ToString("D2")}";
             yield return new WaitForSeconds(1f);

@@ -31,6 +31,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _trophyName;
     [SerializeField] private TextMeshProUGUI _trophyInfoText;
 
+    [SerializeField] private AudioClip _challengeClearSound;
+    [SerializeField] private AudioClip _gameClearSound;
+    [SerializeField] private AudioClip _gameOverSound;
+    [SerializeField] private AudioClip _AllClearSound;
+
     private bool _isOnChallengePanel = false;
     
     private void Awake() {
@@ -74,6 +79,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnGameClearPanel(bool is3D){
+        GameManager.Instance.SoundManager.PlayerOneShot(_gameClearSound);
         ((is3D) ? _3DGameClearPanel : _gameClearPanel).gameObject.SetActive(true);
         ((is3D) ? _3DGameClearPanel : _gameClearPanel).DOFade(1, 0.3f);
         ((is3D) ? _3DGameClearPanel : _gameClearPanel).transform.GetComponentInChildren<TextMeshProUGUI>().DOFade(1, 0.3f);
@@ -90,6 +96,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnGameOverPanel(bool is3D){
+        GameManager.Instance.SoundManager.PlayerOneShot(_gameOverSound);
         ((is3D) ? _3DGameOverPanel : _gameOverPanel).gameObject.SetActive(true);
         ((is3D) ? _3DGameOverPanel : _gameOverPanel).DOFade(1, 0.3f);
         ((is3D) ? _3DGameOverPanel : _gameOverPanel).transform.GetComponentInChildren<TextMeshProUGUI>().DOFade(1, 0.3f);
@@ -106,6 +113,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void PopUpChallengePanel(string challengeName, Sprite challengeSprite){
+        GameManager.Instance.SoundManager.PlayerOneShot((challengeName == "[고양이] 그 잡채") ? _AllClearSound : _challengeClearSound);
         StartCoroutine(PopUpChallengeCoroutine(challengeName, challengeSprite));
     }
 

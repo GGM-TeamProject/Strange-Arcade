@@ -40,6 +40,8 @@ public class Stage3_Car : MonoBehaviour, IDamage
     [SerializeField] private float _maxHP = 5f;
     [SerializeField] private UnityEvent _callBack = null;
 
+    [SerializeField] private AudioClip _dashSound;
+
     private float _currentHP = 0f;
     private float _dashGauge = 0f;
     private bool _isDash = false;
@@ -103,6 +105,7 @@ public class Stage3_Car : MonoBehaviour, IDamage
             if(Input.GetKeyDown(KeyCode.LeftShift)){
                 _isDash = true;
                 _currentTime = 0f;
+                GameManager.Instance.SoundManager.PlayerOneShot(_dashSound);
                 StartCoroutine(DashCoroutine());
             }
         }

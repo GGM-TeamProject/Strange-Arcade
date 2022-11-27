@@ -333,6 +333,7 @@ MonoBehaviour:
   _moveMaxValue: 8
   _spawnDelay: 3
   _player: {fileID: 4157812985832387920}
+  _itemSpawnSound: {fileID: 8300000, guid: 34a9d20e117cb9d40946f7c45187d4c3, type: 3}
 --- !u!1 &19369470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,6 +1094,7 @@ MonoBehaviour:
   - {fileID: 778470476}
   _rollObj: {fileID: 935486116}
   _cat: {fileID: 1639112772}
+  _bulletSpawnSound: {fileID: 8300000, guid: fc9b67c191c403244aeca48f56f173ca, type: 3}
 --- !u!1 &164995037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,6 +1216,7 @@ MonoBehaviour:
   - {fileID: 191863609}
   - {fileID: 191863610}
   - {fileID: 191863611}
+  _onSkillSound: {fileID: 8300000, guid: b6666341d4e89714fa67a773cad5e39c, type: 3}
 --- !u!50 &191863607
 Rigidbody2D:
   serializedVersion: 4
@@ -8013,6 +8016,8 @@ MonoBehaviour:
   _instantDeathDamage: 100
   _stunTime: 1.5
   _playerEnum: 0
+  _playerJumpSound: {fileID: 8300000, guid: e91b971cce140c842a0a9d209b68671e, type: 3}
+  _hitSound: {fileID: 8300000, guid: 7835f8200bebbd840ad9f8177fa87c24, type: 3}
 --- !u!50 &867637761
 Rigidbody2D:
   serializedVersion: 4
@@ -8498,6 +8503,7 @@ MonoBehaviour:
   _rollCoolDownValue: 5
   _cat: {fileID: 1639112772}
   _rollObjectParent: {fileID: 935486115}
+  _rollSound: {fileID: 8300000, guid: 3c0fd79a1a6ed674faac543a9e774cfc, type: 3}
 --- !u!1 &939183619
 GameObject:
   m_ObjectHideFlags: 0
@@ -8752,6 +8758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerTime: 10
+  _timerWarningClip: {fileID: 0}
   _timer: {fileID: 1887264316}
 --- !u!1 &970097258
 GameObject:
@@ -9788,6 +9795,7 @@ GameObject:
   - component: {fileID: 1128657191}
   - component: {fileID: 1128657192}
   - component: {fileID: 1128657193}
+  - component: {fileID: 1128657194}
   m_Layer: 0
   m_Name: Lava
   m_TagString: Lava
@@ -9852,6 +9860,20 @@ MonoBehaviour:
   _lavaMoveSpeed: 0.3
   _initPos: {x: 0, y: -35, z: 0}
   _warningTxt: {fileID: 540962116}
+--- !u!114 &1128657194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128657190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30f06f954af29d547b8fb50b0f8668bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _warningLaveSound: {fileID: 8300000, guid: fa637827fe19b8d408c6dde10916b2ba, type: 3}
+  _stage1BGM: {fileID: 0}
 --- !u!1 &1141439965
 GameObject:
   m_ObjectHideFlags: 0
@@ -12407,6 +12429,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ab2add5a30b3fe149a90e1339cc59205, type: 2}
   - {fileID: 11400000, guid: 0e8eb2e75f8b9e94db46c14fd07669fd, type: 2}
   - {fileID: 11400000, guid: bc40bc257761a1549895e4cbc1c3b058, type: 2}
+  _stageStartSound: {fileID: 8300000, guid: fb4fcad137c7ec248bafec3625395ec2, type: 3}
 --- !u!1 &1399343468
 GameObject:
   m_ObjectHideFlags: 0
@@ -14502,6 +14525,10 @@ MonoBehaviour:
   _trophyImage: {fileID: 970097260}
   _trophyName: {fileID: 909118993}
   _trophyInfoText: {fileID: 1339559460}
+  _challengeClearSound: {fileID: 8300000, guid: dcfa0b3e1fe5f2f45bdbdd2ea0f90947, type: 3}
+  _gameClearSound: {fileID: 8300000, guid: 3c53da5e777319043bb6afc1b2f58f6a, type: 3}
+  _gameOverSound: {fileID: 8300000, guid: 8f117adf721dbd84aa211fc91c73e9da, type: 3}
+  _AllClearSound: {fileID: 8300000, guid: 94e69e0614d20ea46afe4e93a08d5c47, type: 3}
 --- !u!1 &1600285136
 GameObject:
   m_ObjectHideFlags: 0
@@ -14822,6 +14849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerTime: 180
+  _timerWarningClip: {fileID: 8300000, guid: 6c9f067c0183b5644b1b43c2b56a8256, type: 3}
   _timer: {fileID: 1459688132}
   _skillIcons:
   - {fileID: 502963172}
@@ -15019,6 +15047,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _catHitSound: {fileID: 8300000, guid: 00e376ca0f3a6684d9633722bb02d9ef, type: 3}
+  _catMoveSound: {fileID: 8300000, guid: c731e20244d4ba14498c98232aa7d0ad, type: 3}
 --- !u!1 &1643346951
 GameObject:
   m_ObjectHideFlags: 0
@@ -29694,6 +29724,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _dashSound: {fileID: 8300000, guid: 9c098fa4b8740ed4ebb0a5d38eaad58c, type: 3}
 --- !u!54 &4157812985832387921
 Rigidbody:
   m_ObjectHideFlags: 0

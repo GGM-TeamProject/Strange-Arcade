@@ -23,6 +23,9 @@ public class Stage2_Cat : MonoBehaviour, IDamage
     [SerializeField] private UnityEvent _callBack = null;
     private float _currentHp;
 
+    [SerializeField] private AudioClip _catHitSound;
+    [SerializeField] private AudioClip _catMoveSound;
+
     private CatState _catState = CatState.Idle;
     public CatState CatState => _catState;
 
@@ -61,6 +64,7 @@ public class Stage2_Cat : MonoBehaviour, IDamage
             sq.Append(_spriteRenderer.DOFade(0.3f, 0.1f));
             sq.OnComplete(() => {
                 _spriteRenderer.DOFade(1f, 0.1f);
+                GameManager.Instance.SoundManager.PlayerOneShot(_catMoveSound);
                 transform.position = spawnPos;
             });
             yield return new WaitForSeconds(0.2f);
@@ -71,6 +75,7 @@ public class Stage2_Cat : MonoBehaviour, IDamage
     {
         if(_catState == CatState.GodMode) return;
         
+        GameManager.Instance.SoundManager.PlayerOneShot(_catHitSound);
         _ui.HpDownUI((int)damage);
         _currentHp -= damage;
         if(_currentHp <= 0){

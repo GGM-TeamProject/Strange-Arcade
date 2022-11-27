@@ -14,6 +14,7 @@ public class BulletSpawner : MonoBehaviour
     private float _currentTime = 0f;
     [SerializeField] private RollObject _rollObj;
     [SerializeField] private Stage2_Cat _cat;
+    [SerializeField] private AudioClip _bulletSpawnSound;
 
     private bool _canSpawnBullet = true;
     public bool CanSpawnBullet {get => _canSpawnBullet; set => _canSpawnBullet = value;}
@@ -62,6 +63,7 @@ public class BulletSpawner : MonoBehaviour
         GameObject bullet = PoolManager.Instance.Pop("Bullet");
         bullet.transform.position = spawnTrm.position + shotPos;
         bullet.transform.rotation = Quaternion.Euler(0, 0, shotAngle - 90);
+        GameManager.Instance.SoundManager.PlayerOneShot(_bulletSpawnSound);
         bullet.GetComponent<Stage2_Bullet>().SetDirection(shotPos.normalized);
         yield return new WaitForSeconds(0.2f);
     }
@@ -74,6 +76,7 @@ public class BulletSpawner : MonoBehaviour
             GameObject bullet = PoolManager.Instance.Pop("Bullet");
             bullet.transform.position = spawnTrm.position + shotPos;
             bullet.transform.rotation = Quaternion.Euler(0, 0, shotAngle - 90);
+            GameManager.Instance.SoundManager.PlayerOneShot(_bulletSpawnSound);
             bullet.GetComponent<Stage2_Bullet>().SetDirection(shotPos.normalized);
         }
         yield return new WaitForSeconds(0.2f);
@@ -88,6 +91,7 @@ public class BulletSpawner : MonoBehaviour
             GameObject bullet = PoolManager.Instance.Pop("Bullet");
             bullet.transform.position = spawnTrm.position + shotPos;
             bullet.transform.rotation = Quaternion.Euler(0, 0, shotAngle - 90);
+            GameManager.Instance.SoundManager.PlayerOneShot(_bulletSpawnSound);
             bullet.GetComponent<Stage2_Bullet>().SetDirection(shotPos.normalized);
             yield return new WaitForSeconds(0.5f);
         }

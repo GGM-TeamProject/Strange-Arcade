@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class Banana : Item
 {   
+    [SerializeField] private AudioClip _itemSound;
     private Stage3_CarInput _inputSystem;
     private ParticleSystem _stunParticle;
 
@@ -16,6 +17,7 @@ public class Banana : Item
 
     public override void OnUseItem()
     {
+        GameManager.Instance.SoundManager.PlayerOneShot(_itemSound);
         _stunParticle.Play();
         player.transform.DORotate(new Vector3(0, 360, 0), 0.5f, RotateMode.FastBeyond360);
         GameManager.Instance.ItemManager.BananaMethod(5f, _stunParticle, _inputSystem);

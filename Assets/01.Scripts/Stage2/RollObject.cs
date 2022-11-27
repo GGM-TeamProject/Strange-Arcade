@@ -15,6 +15,8 @@ public class RollObject : MonoBehaviour
     [SerializeField] private Transform _rollObjectParent;
     private Queue<Vector3> _bulletVelocitys = new Queue<Vector3>();
 
+    [SerializeField] private AudioClip _rollSound;
+
     public void Init(){
         _rollCoolTime = 30f;
         StopAllCoroutines();
@@ -38,6 +40,7 @@ public class RollObject : MonoBehaviour
     }
 
     private void TurnObject(){
+        GameManager.Instance.SoundManager.PlayerOneShot(_rollSound);
         _isRoll = true;
         float lateRotate = Mathf.Round(transform.rotation.eulerAngles.z);
         foreach(Stage2_Bullet bullet in GameManager.Instance.BulletStore.GetComponentsInChildren<Stage2_Bullet>()){

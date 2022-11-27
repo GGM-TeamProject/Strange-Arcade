@@ -11,6 +11,8 @@ public class Player_Stage2 : MonoBehaviour
     [SerializeField] private Stage2_PlayerSkill[] _playerSkills;
     public Stage2_PlayerSkill[] PlayerSkills => _playerSkills;
 
+    [SerializeField] private AudioClip _onSkillSound;
+
     private void Awake() {
         _anim = transform.Find("Sprite").GetComponent<Animator>();
         _rigid = GetComponent<Rigidbody2D>();
@@ -36,12 +38,15 @@ public class Player_Stage2 : MonoBehaviour
 
     private void UseSkill(){
         if(Input.GetKeyDown(KeyCode.Z)){
+            GameManager.Instance.SoundManager.PlayerOneShot(_onSkillSound);
             _playerSkills[0].OnSkill();
         }
         else if(Input.GetKeyDown(KeyCode.X)){
+            GameManager.Instance.SoundManager.PlayerOneShot(_onSkillSound);
             _playerSkills[1].OnSkill();
         }
         else if(Input.GetKeyDown(KeyCode.C)){
+            GameManager.Instance.SoundManager.PlayerOneShot(_onSkillSound);
             _playerSkills[2].OnSkill();
         }
     }

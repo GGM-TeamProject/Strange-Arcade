@@ -10,6 +10,8 @@ public class Stage3_Cat : MonoBehaviour
     [SerializeField] private float _spawnDelay = 3f;
     [SerializeField] private Stage3_Car _player;
 
+    [SerializeField] private AudioClip _itemSpawnSound;
+
     private bool _isSpawnItem = false;
     private Transform _model;
     private Animator _anim;
@@ -47,6 +49,7 @@ public class Stage3_Cat : MonoBehaviour
             Vector3 _spawnPos = new Vector3(transform.position.x, -11, 55);
             GameObject item = SetRandomItem(randPercentage);
             item.transform.position = _spawnPos;
+            GameManager.Instance.SoundManager.PlayerOneShot(_itemSpawnSound);
             yield return new WaitForSeconds(0.5f);
             _isSpawnItem = false;
         }

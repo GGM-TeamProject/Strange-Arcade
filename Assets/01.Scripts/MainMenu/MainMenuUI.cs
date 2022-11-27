@@ -8,6 +8,7 @@ using TMPro;
 public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private List<StageSO> stageSOs;
+    [SerializeField] private AudioClip _stageStartSound;
 
     private bool _isSelected = false;
     public bool IsSelected {get => _isSelected; set => _isSelected = value;}
@@ -41,6 +42,7 @@ public class MainMenuUI : MonoBehaviour
         _popUpRectTrm.DOAnchorPos3DX(470, 0.3f);
         if(Input.GetKeyDown(KeyCode.Return)){
             yield return new WaitForSeconds(0.2f);
+            GameManager.Instance.SoundManager.PlayerOneShot(_stageStartSound);
             Debug.Log($"{stage} 시작");
             SceneTransManager.Instance.SceneChange($"Stage{stage}");
             _isSelected = false;

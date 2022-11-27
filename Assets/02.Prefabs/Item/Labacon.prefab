@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
+  _itemSound: {fileID: 8300000, guid: b90b900af89e6024f9f4c6390a0641e0, type: 3}
 --- !u!65 &8237405635670301418
 BoxCollider:
   m_ObjectHideFlags: 0

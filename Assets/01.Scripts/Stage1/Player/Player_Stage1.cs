@@ -39,6 +39,10 @@ public class Player_Stage1 : MonoBehaviour
     [SerializeField] private PlayerEnum _playerEnum = PlayerEnum.Idle;
     public PlayerEnum PlayerEnum {get => _playerEnum; set => _playerEnum = value;}
 
+    [SerializeField] private AudioClip _playerJumpSound;
+    [SerializeField] private AudioClip _hitSound;
+
+
     private Rigidbody2D _rigid;
     private Animator _anim;
     private Transform _sprite;
@@ -136,6 +140,7 @@ public class Player_Stage1 : MonoBehaviour
             }
 
             if(Input.GetKeyUp(KeyCode.Space)){
+                GameManager.Instance.SoundManager.PlayerOneShot(_playerJumpSound);
                 _playerEnum = PlayerEnum.Jump;
                 _isJump = true;
 
@@ -171,6 +176,7 @@ public class Player_Stage1 : MonoBehaviour
     }
 
     IEnumerator PlayerStun(float stunTime){
+        GameManager.Instance.SoundManager.PlayerOneShot(_hitSound);
         _playerHitAnimation.Play("PlayerHit");
         _playerStunParticle.Play();
         yield return new WaitForSeconds(stunTime);

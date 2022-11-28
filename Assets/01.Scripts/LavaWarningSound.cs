@@ -7,11 +7,17 @@ public class LavaWarningSound : MonoBehaviour
     [SerializeField] private AudioClip _warningLaveSound;
     [SerializeField] private AudioClip _stage1BGM;
 
+    private GameManager _gameManagerInstance;
+
+    private void Awake() {
+        _gameManagerInstance = GameManager.Instance;
+    }
+
     private void OnEnable() {
-        GameManager.Instance.SoundManager.BGMSetting(_warningLaveSound);
+        _gameManagerInstance.SoundManager.BGMSetting(_warningLaveSound);
     }
     
     private void OnDisable() {
-        GameManager.Instance.SoundManager.BGMSetting(_stage1BGM);
+        _gameManagerInstance.SoundManager.BGMSetting(_stage1BGM);
     }
 }

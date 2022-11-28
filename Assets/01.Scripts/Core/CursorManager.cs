@@ -19,6 +19,8 @@ public class CursorManager : MonoBehaviour
     private Texture2D _selectCursor;
     private Texture2D _waitingCursor;
 
+    public bool IsWaiting {get; set;}
+
     private void Start() {
         _normalCursor = Resources.Load<Texture2D>("Cursors/NormalCursor");
         _selectCursor = Resources.Load<Texture2D>("Cursors/SelectCursor");
@@ -32,7 +34,7 @@ public class CursorManager : MonoBehaviour
 
     private void MouseRay(){
         RaycastHit hit = CastRay();
-        if(hit.collider) mouseState = MouseState.Select;
+        if(!IsWaiting) mouseState = (hit.collider) ? MouseState.Select : MouseState.Normal;
     }
 
     private RaycastHit CastRay(){

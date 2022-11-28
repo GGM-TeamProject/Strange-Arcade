@@ -18,7 +18,7 @@ public abstract class Item : MonoBehaviour
 
     public void MoveItem(){
         transform.position += -Vector3.forward * (_speed * (_player.PlayerSpeed / 10)) * Time.deltaTime;
-        if(transform.position.z <= -3f || !_player.gameObject.activeSelf) PoolManager.Instance.Push(gameObject);
+        if(transform.position.z <= -3f || !_player.gameObject.activeSelf || _player.PlayerState == CarState.Die) PoolManager.Instance.Push(gameObject);
     }
 
     public abstract void OnUseItem();

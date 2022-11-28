@@ -33,7 +33,7 @@ public class ESCMenu : ButtonSelect
         GameManager.Instance.SoundManager.VolumeSet("BGM", _bgmSlider.value);
         GameManager.Instance.SoundManager.VolumeSet("SFX", _sfxSlider.value);
         
-        if(_mainMenuObj.activeSelf || _gameClearPanel.activeSelf || _gameClearPanel.activeSelf) return;
+        if(_mainMenuObj.activeSelf || _gameClearPanel.activeSelf || _gameOverPanel.activeSelf) return;
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(_isAudioSetting){
                 _isAudioSetting = false;

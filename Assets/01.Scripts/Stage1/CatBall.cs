@@ -13,7 +13,7 @@ public class CatBall : MonoBehaviour
     }
 
     private void Update() {
-        if(_player.PlayerEnum == PlayerEnum.Die || !_player.gameObject.activeSelf || _rigid.velocity == Vector2.zero) PoolManager.Instance.Push(gameObject);
+        //if(_player.PlayerEnum == PlayerEnum.Die || !_player.gameObject.activeSelf || _rigid.velocity == Vector2.zero) PoolManager.Instance.Push(gameObject);
     }
 
     public void Movement(Vector3 direct, float power){
@@ -22,7 +22,7 @@ public class CatBall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.transform.CompareTag("DestroyZone")){
-            PoolManager.Instance.Push(gameObject);
+            //PoolManager.Instance.Push(gameObject);
         }
     }
 }

@@ -16433,7 +16433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6a3bd41fda3cd429968e610fa303e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timerTime: 180
+  _timerTime: 120
   _timerWarningClip: {fileID: 8300000, guid: 6c9f067c0183b5644b1b43c2b56a8256, type: 3}
   _timer: {fileID: 1459688132}
   _skillIcons:

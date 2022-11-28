@@ -29,7 +29,8 @@ public class ESCMenu : ButtonSelect
         GameManager.Instance.SoundManager.VolumeSet("BGM", _bgmSlider.value);
         GameManager.Instance.SoundManager.VolumeSet("SFX", _sfxSlider.value);
         
-        if(_mainMenuObj.activeSelf || GameManager.Instance.UIManager.IsGameClear || GameManager.Instance.UIManager.IsGameOver) return;
+        if(_mainMenuObj.activeSelf || GameManager.Instance.UIManager.IsGameClear || GameManager.Instance.UIManager.IsGameOver || SceneTransManager.Instance.IsChangeScene)
+            return;
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(_isAudioSetting){
                 _isAudioSetting = false;
@@ -42,7 +43,7 @@ public class ESCMenu : ButtonSelect
             }
         }
 
-        if(!_isAudioSetting){
+        if(!_isAudioSetting && _isEsc){
             ButtonMove();
             if(Input.GetKeyDown(KeyCode.Return)){
                 switch(_currentSelectButton){

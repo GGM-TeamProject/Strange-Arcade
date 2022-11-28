@@ -23,12 +23,6 @@ public class RollObject : MonoBehaviour
         StartCoroutine(TurnCoroutine());
     }
 
-    private void OnDisable() {
-        foreach(Stage2_Bullet bullet in GameManager.Instance.BulletStore.GetComponentsInChildren<Stage2_Bullet>()){
-            bullet.OnKill();
-        }
-    }
-
     private void FixedUpdate() {
         if(!_isRoll){
             _bulletVelocitys.Clear();

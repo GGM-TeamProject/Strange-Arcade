@@ -71,15 +71,18 @@ public class SceneTransManager : MonoSingleton<SceneTransManager>
         SetCameraRenderer(0);
         switch(sceneName){
             case "MainMenu":
+                GameManager.Instance.CameraManager.CamSetting(null);
                 GameManager.Instance.SoundManager.BGMSetting(_mainMenuBGM);
                 break;
             case "Stage1":
                 GameManager.Instance.SoundManager.BGMSetting(_stage1BGM);
                 break;
             case "Stage2":
+                GameManager.Instance.CameraManager.CamSetting(null);
                 GameManager.Instance.SoundManager.BGMSetting(_stage2BGM);
                 break;
             case "Stage3":
+                GameManager.Instance.CameraManager.CamSetting(null);
                 GameManager.Instance.SoundManager.BGMSetting(_stage3BGM);
                 break;
         }

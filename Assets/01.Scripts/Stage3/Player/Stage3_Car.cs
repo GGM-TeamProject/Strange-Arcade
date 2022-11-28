@@ -89,6 +89,11 @@ public class Stage3_Car : MonoBehaviour, IDamage
             Accel();
             if(_dashGauge <= 100f) DashCoolTime();
         }
+
+        if(GameManager.Instance.UIManager.IsGameClear || GameManager.Instance.UIManager.IsGameOver || SceneTransManager.Instance.IsChangeScene){
+            _speedLine.SetGradient("ColorGradient", _normalGradient);
+            _speedLine.Stop();
+        }
     }
 
     IEnumerator GodMode(float duration){
@@ -194,9 +199,5 @@ public class Stage3_Car : MonoBehaviour, IDamage
             GameObject impactParticle = PoolManager.Instance.Pop("ImpactParticle");
             impactParticle.transform.position = other.transform.position;
         }
-    }
-
-    private void OnDisable() {
-        _speedLine.Stop();
     }
 }

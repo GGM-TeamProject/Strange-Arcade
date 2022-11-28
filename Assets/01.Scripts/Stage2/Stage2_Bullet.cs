@@ -26,7 +26,13 @@ public class Stage2_Bullet : MonoBehaviour
     }
 
     private void Update() {
-        if(_cat.CatState == CatState.Die) OnKill();
+        if(_cat.CatState == CatState.Die ||
+        !_cat.gameObject.activeSelf ||
+        SceneTransManager.Instance.IsChangeScene ||
+        GameManager.Instance.UIManager.IsGameClear ||
+        GameManager.Instance.UIManager.IsGameOver){
+            OnKill();
+        }
         _lastVelocity = _rigid.velocity;
     }
 

@@ -38,6 +38,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private AudioClip _uiPopUpSound;
 
     private bool _isOnChallengePanel = false;
+
+    public bool IsGameOver {get; set;} = false;
+    public bool IsGameClear {get; set;} = false;
     
     private void Awake() {
         _challengePanel = GameObject.Find("Screen/PublicCanvas/ChallengeClearPanel").GetComponent<RectTransform>();
@@ -81,6 +84,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnGameClearPanel(bool is3D){
+        IsGameClear = true;
         GameManager.Instance.SoundManager.PlayerOneShot(_gameClearSound);
         ((is3D) ? _3DGameClearPanel : _gameClearPanel).gameObject.SetActive(true);
         ((is3D) ? _3DGameClearPanel : _gameClearPanel).DOFade(1, 0.3f);
@@ -94,10 +98,12 @@ public class UIManager : MonoBehaviour
         sq.Join(((is3D) ? _3DGameClearPanel : _gameClearPanel).transform.GetComponentInChildren<TextMeshProUGUI>().DOFade(1, 0.3f));
         sq.OnComplete(() => {
             ((is3D) ? _3DGameClearPanel : _gameClearPanel).gameObject.SetActive(false);
+            IsGameClear = false;
         });
     }
 
     public void OnGameOverPanel(bool is3D){
+        IsGameOver = true;
         GameManager.Instance.SoundManager.PlayerOneShot(_gameOverSound);
         ((is3D) ? _3DGameOverPanel : _gameOverPanel).gameObject.SetActive(true);
         ((is3D) ? _3DGameOverPanel : _gameOverPanel).DOFade(1, 0.3f);
@@ -111,6 +117,7 @@ public class UIManager : MonoBehaviour
         sq.Join(((is3D) ? _3DGameOverPanel : _gameOverPanel).transform.GetComponentInChildren<TextMeshProUGUI>().DOFade(1, 0.3f));
         sq.OnComplete(() => {
             ((is3D) ? _3DGameOverPanel : _gameOverPanel).gameObject.SetActive(false);
+            IsGameOver = false;
         });
     }
 

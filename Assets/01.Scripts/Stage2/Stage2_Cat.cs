@@ -18,6 +18,7 @@ public class Stage2_Cat : MonoBehaviour, IDamage
         public Vector2 minPos;
     }
     [field:SerializeField] private StageData _stageData;
+    [SerializeField] private Vector3 _initPos = new Vector3(0, 0);
 
     [SerializeField] private float _maxHp;
     [SerializeField] private UnityEvent _callBack = null;
@@ -44,6 +45,7 @@ public class Stage2_Cat : MonoBehaviour, IDamage
     public void Init(){
         _currentHp = _maxHp;
         _catState = CatState.GodMode;
+        transform.position = _initPos;
         Invoke("CancleGodMode", 0.2f);
         StopAllCoroutines();
         StartCoroutine(Move());
@@ -78,7 +80,9 @@ public class Stage2_Cat : MonoBehaviour, IDamage
         GameManager.Instance.SoundManager.PlayerOneShot(_catHitSound);
         _ui.HpDownUI((int)damage);
         _currentHp -= damage;
-        if(_currentHp <= 0){
+        if(_currentHp <= 0 && _catState != CatState.Die && !SceneTransManager.Instance.IsChangeScene &&
+            !GameManager.Instance.UIManager.IsGameClear && !GameManager.Instance.UIManager.IsGameOver){
+            _catState = CatState.Die;
             OnPlayerDie(_callBack);
         }
     }
@@ -86,7 +90,6 @@ public class Stage2_Cat : MonoBehaviour, IDamage
     private void OnPlayerDie(UnityEvent CallBack){
         Debug.Log("주금");
         GameManager.Instance.ChallengeManager.CheckClear("FirstDeath_S2");
-        _catState = CatState.Die;
         StartCoroutine(PlayerDieCoroutine(CallBack));
     }
 

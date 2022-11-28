@@ -158,7 +158,9 @@ public class Stage3_Car : MonoBehaviour, IDamage
     {
         if(_playerState == CarState.GodMode) return;
         _currentHP--;
-        if(_currentHP <= 0){
+        if(_currentHP <= 0 && _playerState != CarState.Die && !SceneTransManager.Instance.IsChangeScene &&
+            !GameManager.Instance.UIManager.IsGameClear && !GameManager.Instance.UIManager.IsGameOver){
+            _playerState = CarState.Die;
             OnPlayerDie(_callBack);
         }
         else{
@@ -169,7 +171,6 @@ public class Stage3_Car : MonoBehaviour, IDamage
     private void OnPlayerDie(UnityEvent CallBack){
         Debug.Log("주금");
         GameManager.Instance.ChallengeManager.CheckClear("FirstDeath_S3");
-        _playerState = CarState.Die;
         StartCoroutine(PlayerDieCoroutine(CallBack));
     }
 

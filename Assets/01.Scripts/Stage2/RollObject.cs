@@ -23,6 +23,12 @@ public class RollObject : MonoBehaviour
         StartCoroutine(TurnCoroutine());
     }
 
+    private void OnDisable() {
+        foreach(Stage2_Bullet bullet in GameManager.Instance.BulletStore.GetComponentsInChildren<Stage2_Bullet>()){
+            bullet.OnKill();
+        }
+    }
+
     private void FixedUpdate() {
         if(!_isRoll){
             _bulletVelocitys.Clear();
@@ -45,6 +51,7 @@ public class RollObject : MonoBehaviour
         float lateRotate = Mathf.Round(transform.rotation.eulerAngles.z);
         foreach(Stage2_Bullet bullet in GameManager.Instance.BulletStore.GetComponentsInChildren<Stage2_Bullet>()){
             bullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            bullet.transform.rotation = Quaternion.AngleAxis(bullet.transform.rotation.z - (int)90, Vector3.forward);
         }
         Sequence sq = DOTween.Sequence();
         sq.Append(_rollObjectParent.DORotate(new Vector3(0, 0, lateRotate + 10), 0.5f));

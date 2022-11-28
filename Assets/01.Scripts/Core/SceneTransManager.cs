@@ -19,6 +19,7 @@ public class SceneTransManager : MonoSingleton<SceneTransManager>
     public List<Level> Levels => _levels;
 
     private bool _isChangeScene = false;
+    public bool IsChangeScene => _isChangeScene;
 
     private PixelizeFeature _pixelizeFeature;
     private Transform _screen;

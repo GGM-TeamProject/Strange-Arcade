@@ -16569,6 +16569,7 @@ MonoBehaviour:
   _stageData:
     maxPos: {x: 3.5, y: 3.7}
     minPos: {x: -3.5, y: -3.7}
+  _initPos: {x: 0, y: 0, z: 0}
   _maxHp: 3
   _callBack:
     m_PersistentCalls:

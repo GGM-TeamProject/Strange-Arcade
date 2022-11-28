@@ -16,6 +16,7 @@ public class Timer : MonoBehaviour
 
     public void InitTimerSet(){
         _timerTime = 180;
+        _timer.color = Color.white;
         StartCoroutine(TimerPath());
     }
 

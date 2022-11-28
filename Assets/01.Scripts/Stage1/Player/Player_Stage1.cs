@@ -206,8 +206,6 @@ public class Player_Stage1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.transform.CompareTag("Lava") && _playerEnum != PlayerEnum.Die){
-            _playerEnum = PlayerEnum.Die;
-
             _rigid.velocity = Vector2.zero;
             _rigid.velocity = Vector2.up * 6;
 

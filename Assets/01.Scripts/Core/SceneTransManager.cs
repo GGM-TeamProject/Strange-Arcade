@@ -15,6 +15,9 @@ public class SceneTransManager : MonoSingleton<SceneTransManager>
     [SerializeField] private AudioClip _stage2BGM;
     [SerializeField] private AudioClip _stage3BGM;
 
+    [SerializeField] private List<Level> _levels = new List<Level>();
+    public List<Level> Levels => _levels;
+
     private bool _isChangeScene = false;
 
     private PixelizeFeature _pixelizeFeature;

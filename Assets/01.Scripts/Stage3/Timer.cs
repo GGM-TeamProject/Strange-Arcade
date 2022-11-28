@@ -30,6 +30,7 @@ public class Timer : MonoBehaviour
             yield return new WaitForSeconds(1f);
             --_timerTime;
         }
+        DataManager.Instance.User.CurrentPlayStage++;
         StartCoroutine(StageClearCoroutine());
     }
 

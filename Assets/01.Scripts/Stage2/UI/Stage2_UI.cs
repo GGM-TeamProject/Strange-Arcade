@@ -29,7 +29,7 @@ public class Stage2_UI : Timer
             child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
             _catHp.Push(child.GetComponent<Image>());
         }
-        _timerTime = 180; 
+        _timerTime = 120; 
         StopAllCoroutines();
         StartCoroutine(TimerPath());
     }

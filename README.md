@@ -14,8 +14,8 @@
 
 ## 게임 특징
 ---
-<img src="https://user-images.githubusercontent.com/98889991/204427612-6a413a6c-ec30-46b2-8bc9-18a4c1724bb1.png" width="300" height="200"/><img src="https://media.discordapp.net/attachments/1018558113898582038/1046772887652147310/image.png" width="300" height="200"/><img src="https://media.discordapp.net/attachments/1018558113898582038/1046773061778673794/image.png"
-width="300" height="200">
+<img src="https://user-images.githubusercontent.com/98889991/204427612-6a413a6c-ec30-46b2-8bc9-18a4c1724bb1.png" width="250" height="200"/><img src="https://media.discordapp.net/attachments/1018558113898582038/1046772887652147310/image.png" width="250" height="200"/><img src="https://media.discordapp.net/attachments/1018558113898582038/1046773061778673794/image.png"
+width="250" height="200">
 
 #### 고양이가 점령한 게임 스테이지를 순서대로 클리어 하여 고양이를 내쫒으세요.
 > 각각 다른 장르의 게임 시스템을 차용하여 한 게임에서 다른 다양한 장르의 게임을 느낄 수 있습니다.

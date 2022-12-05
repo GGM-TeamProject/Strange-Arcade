@@ -2,7 +2,7 @@
 #### 1학년 2학기 학기 말 팀 프로젝트로 제작한 게임입니다.
 
 > ##### [클릭하면 플레이 영상으로 이동합니다.](/README.md)
-> ##### [클릭하면 다운로드 링크로 이동합니다.](https://drive.google.com/drive/folders/1sVhiSK5W4nVgn3FGfIPX9cYG-3asBCWH?usp=sharing)
+> ##### [클릭하면 다운로드 링크로 이동합니다.](https://drive.google.com/file/d/1vM_CPYvhs7wo34xuERSidoE_VDUEjsfK/view?usp=sharing)
 
 <br>
 
